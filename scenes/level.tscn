@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=4 uid="uid://sgaqo3xd50ep"]
+[gd_scene load_steps=6 format=4 uid="uid://sgaqo3xd50ep"]
 
 [ext_resource type="Texture2D" uid="uid://dp4nuwh2k2go3" path="res://assets/tempTilemap.png" id="1_2q6dc"]
 [ext_resource type="PackedScene" uid="uid://c4k53ba58itnm" path="res://scenes/character_body_2d.tscn" id="2_w7c3h"]
+[ext_resource type="Texture2D" uid="uid://5enlfahk6xws" path="res://assets/background.png" id="3_w8frs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7c3h"]
 texture = ExtResource("1_2q6dc")
@@ -26,6 +27,14 @@ sources/0 = SubResource("TileSetAtlasSource_w7c3h")
 
 [node name="Level" type="Node2D"]
 position = Vector2(0, -195)
+
+[node name="Parallax2D" type="Parallax2D" parent="."]
+scroll_scale = Vector2(0.3, 0.3)
+
+[node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
+position = Vector2(-1045, -1478)
+scale = Vector2(2.62313, 2.62313)
+texture = ExtResource("3_w8frs")
 
 [node name="TileMaps" type="Node2D" parent="."]
 
