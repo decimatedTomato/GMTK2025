@@ -80,12 +80,12 @@ func _physics_process(delta: float) -> void:
 func die():
 	hide()
 	hit.emit()
-	
+
 func _on_shadow_position_timer_timeout():
 	shadowData.append({"position": position, "flip_h": animation_sprite.flip_h});
-	
+
 func _restart():
 	restart.emit()
-	
+
 func _reset():
 	shadowData = []

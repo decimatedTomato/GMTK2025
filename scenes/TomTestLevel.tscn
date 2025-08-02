@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=4 uid="uid://1leo5n6g8mta"]
 
 [ext_resource type="Texture2D" uid="uid://celww7vgvghtf" path="res://assets/cave tileset.png" id="1_11fv7"]
-[ext_resource type="PackedScene" uid="uid://c4k53ba58itnm" path="res://scenes/Player.tscn" id="2_orf8y"]
+[ext_resource type="PackedScene" uid="uid://cvkdj4nek1ceh" path="res://scenes/Player.tscn" id="2_orf8y"]
 [ext_resource type="PackedScene" uid="uid://brvt1ey3jp0i0" path="res://scenes/deathBox.tscn" id="3_hdjwj"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdjwj"]

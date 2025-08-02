@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/spawn_point.tscn" id="9_olg7q"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_t1rx8"]
-[ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scenes/pauser.gd" id="12_8iemx"]
+[ext_resource type="Script" path="res://scenes/pauser.gd" id="12_8iemx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klq6b"]
 texture = ExtResource("6_2r41h")
@@ -247,7 +247,7 @@ scroll_scale = Vector2(0.9, 0.9)
 scroll_offset = Vector2(9, -14)
 
 [node name="Sprite2D" type="Sprite2D" parent="Parallax2D"]
-position = Vector2(-57, -224)
+position = Vector2(-55, -223)
 scale = Vector2(0.841056, 0.841056)
 texture = ExtResource("2_2r41h")
 
@@ -267,6 +267,7 @@ collision_enabled = false
 
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]
 position = Vector2(733, -439)
+dash_speed = 500.0
 
 [node name="DeathBox" parent="." instance=ExtResource("3_mx8sn")]
 position = Vector2(-2445, 291)
