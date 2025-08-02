@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://sgaqo3xd50ep"]
+[gd_scene load_steps=17 format=4 uid="uid://sgaqo3xd50ep"]
 
 [ext_resource type="Texture2D" uid="uid://dp4nuwh2k2go3" path="res://assets/tempTilemap.png" id="1_2q6dc"]
 [ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/level.gd" id="1_2r41h"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/spawn_point.tscn" id="9_olg7q"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_t1rx8"]
+[ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scenes/pauser.gd" id="12_8iemx"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klq6b"]
 texture = ExtResource("6_2r41h")
@@ -296,7 +297,7 @@ position = Vector2(476, -212)
 position = Vector2(379, -350)
 
 [node name="SpawnPoint11" parent="SpawnManager" instance=ExtResource("9_olg7q")]
-position = Vector2(748, -182)
+position = Vector2(794, -226)
 
 [node name="SpawnPoint2" parent="SpawnManager" instance=ExtResource("9_olg7q")]
 position = Vector2(743, -446)
@@ -322,6 +323,9 @@ autostart = true
 
 [node name="Timer" parent="Hud/MarginContainer/HBoxContainer" index="1" node_paths=PackedStringArray("timer")]
 timer = NodePath("../../../../TotalRunTimer")
+
+[node name="Pauser" type="Node2D" parent="."]
+script = ExtResource("12_8iemx")
 
 [connection signal="restart" from="Player" to="." method="_on_restart"]
 [connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]
