@@ -1,52 +1,62 @@
-[gd_scene load_steps=8 format=3 uid="uid://dma4dkw1hqb5l"]
+[gd_scene load_steps=9 format=3 uid="uid://dma4dkw1hqb5l"]
 
 [ext_resource type="Script" uid="uid://pmie0ho4pf4b" path="res://scripts/VinceScripts/shadow.gd" id="1_j7tw7"]
-[ext_resource type="Texture2D" uid="uid://dwhut2fxyipmv" path="res://art/Temporary/playerGrey_up1.png" id="2_gb55v"]
-[ext_resource type="Texture2D" uid="uid://bv6gpkpcy0wrw" path="res://art/Temporary/playerGrey_up2.png" id="3_0vxm7"]
-[ext_resource type="Texture2D" uid="uid://bvydpdk5nb5aj" path="res://art/Temporary/playerGrey_walk1.png" id="4_20dw8"]
-[ext_resource type="Texture2D" uid="uid://dk0c1t3qf401f" path="res://art/Temporary/playerGrey_walk2.png" id="5_oam0g"]
+[ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_w4lvo"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dw050"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vejd"]
+atlas = ExtResource("2_w4lvo")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws0vm"]
+atlas = ExtResource("2_w4lvo")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhr3r"]
+atlas = ExtResource("2_w4lvo")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t53lx"]
+atlas = ExtResource("2_w4lvo")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_s0po5"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_gb55v")
+"texture": SubResource("AtlasTexture_4vejd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_0vxm7")
+"texture": SubResource("AtlasTexture_ws0vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhr3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t53lx")
 }],
 "loop": true,
-"name": &"up",
-"speed": 5.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_20dw8")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_oam0g")
-}],
-"loop": true,
-"name": &"walk",
+"name": &"Idle",
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j7tw7"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4lvo"]
+radius = 8.0
+height = 18.0
 
 [node name="Shadow" type="Area2D" groups=["shadows"]]
 disable_mode = 2
 script = ExtResource("1_j7tw7")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.358024, 0.638999, 0.728667, 1)
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+modulate = Color(0.351563, 0.351563, 0.351563, 1)
+texture_filter = 1
 scale = Vector2(0.5, 0.5)
-sprite_frames = SubResource("SpriteFrames_dw050")
-animation = &"walk"
+sprite_frames = SubResource("SpriteFrames_s0po5")
+animation = &"Idle"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-light_mask = 0
-visibility_layer = 0
-shape = SubResource("CircleShape2D_j7tw7")
+scale = Vector2(1, 0.981041)
+shape = SubResource("CapsuleShape2D_w4lvo")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

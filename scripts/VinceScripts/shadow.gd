@@ -39,3 +39,9 @@ func _reset():
 	position = positions[0]
 	show()
 	set_process(true)
+
+
+func _on_body_entered(body: Node2D) -> void:
+	if body is Player:
+		print("died");
+		body.die();

@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://bkg07ke3vrxjg"]
+[gd_scene load_steps=2 format=3 uid="uid://b6kjojknc3e4o"]
 
 [ext_resource type="Script" uid="uid://bbm74n1d12hml" path="res://scripts/VinceScripts/spawn_manager.gd" id="1_lyd86"]
 

@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://ruvc0jloqiwp"]
+[gd_scene load_steps=11 format=4 uid="uid://ruvc0jloqiwp"]
 
 [ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/VinceScripts/main.gd" id="1_0wfyh"]
-[ext_resource type="PackedScene" uid="uid://bdc8hxybp43g0" path="res://scenes/character_body_2d.tscn" id="4_yynel"]
+[ext_resource type="PackedScene" uid="uid://cvkdj4nek1ceh" path="res://scenes/Player.tscn" id="2_0clep"]
+[ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/VinceScenes/shadow.tscn" id="2_yynel"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/VinceScenes/endLocation.tscn" id="5_pqswy"]
-[ext_resource type="PackedScene" uid="uid://bkg07ke3vrxjg" path="res://scenes/VinceScenes/spawn_manager.tscn" id="6_0clep"]
-[ext_resource type="PackedScene" uid="uid://bgr010o7fytcq" path="res://scenes/VinceScenes/spawn_point.tscn" id="7_ogvv1"]
+[ext_resource type="PackedScene" uid="uid://b6kjojknc3e4o" path="res://scenes/VinceScenes/spawn_manager.tscn" id="6_0clep"]
+[ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/VinceScenes/spawn_point.tscn" id="7_ogvv1"]
+[ext_resource type="PackedScene" uid="uid://brvt1ey3jp0i0" path="res://scenes/deathBox.tscn" id="7_yynel"]
 [ext_resource type="Texture2D" uid="uid://celww7vgvghtf" path="res://assets/cave tileset.png" id="8_yynel"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xy07t"]
@@ -175,38 +177,47 @@ sources/0 = SubResource("TileSetAtlasSource_xy07t")
 
 [node name="VinceTestScene" type="Node"]
 script = ExtResource("1_0wfyh")
+shadow_scene = ExtResource("2_yynel")
 
-[node name="Player" parent="." instance=ExtResource("4_yynel")]
-position = Vector2(7, 112)
+[node name="Player" parent="." instance=ExtResource("2_0clep")]
+position = Vector2(20, 100)
+collision_layer = 3
+collision_mask = 3
 
 [node name="ShadowPositionTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
 
 [node name="endLocation" parent="." instance=ExtResource("5_pqswy")]
-position = Vector2(98, 145)
+position = Vector2(194, 90)
 collision_layer = 2
 collision_mask = 2
 
 [node name="SpawnManager" parent="." instance=ExtResource("6_0clep")]
 
 [node name="SpawnPoint" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
-position = Vector2(55, 147)
+position = Vector2(-37, 113)
 
 [node name="SpawnPoint2" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
-position = Vector2(63, 133)
+position = Vector2(26, 53)
 
 [node name="SpawnPoint3" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
-position = Vector2(52, 140)
+position = Vector2(8, 214)
 
 [node name="SpawnPoint4" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
-position = Vector2(60, 126)
+position = Vector2(131, -11)
 
 [node name="SpawnPoint5" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
-position = Vector2(60, 163)
+position = Vector2(122, -63)
 
 [node name="TileMapLayer" type="TileMapLayer" parent="."]
 position = Vector2(53, 150)
-scale = Vector2(0.2, 0.2)
 tile_map_data = PackedByteArray("AAD6////AAADAAMAAAAHAAEAAAADAAIAAAAHAAAAAAADAAEAAAAHAP//AAADAAEAAAAHAP7/AAADAAAAAAABAPv/AAACAAMAAAAAAPv/AAABAAMAAAD///v/AAABAAMAAAD+//v/AAABAAMAAAD9//v/AAAAAAMAAAAIAPn/AAACAAIAAAAIAPj/AAACAAAAAAAHAPn/AAAAAAIAAAAHAPj/AAAAAAAAAAABAPj/AAACAAIAAAABAPf/AAACAAAAAAAAAPj/AAABAAIAAAAAAPf/AAABAAAAAAD///j/AAABAAIAAAD///f/AAABAAAAAAD+//j/AAAAAAIAAAD+//f/AAAAAAAAAAAFAPr/AAACAAIAAAAFAPn/AAACAAEAAAAFAPj/AAACAAEAAAAFAPf/AAACAAAAAAAEAPr/AAAAAAIAAAAEAPn/AAAAAAEAAAAEAPj/AAAAAAEAAAAEAPf/AAAAAAAAAAABAAgAAAACAAIAAAABAAcAAAACAAEAAAABAAYAAAACAAEAAAABAAUAAAACAAAAAAAAAAgAAAABAAIAAAAAAAcAAAABAAEAAAAAAAYAAAABAAEAAAAAAAUAAAABAAAAAAD//wgAAAABAAIAAAD//wcAAAABAAEAAAD//wYAAAABAAEAAAD//wUAAAABAAAAAAD+/wgAAAABAAIAAAD+/wcAAAABAAEAAAD+/wYAAAABAAEAAAD+/wUAAAABAAAAAAD9/wgAAAABAAIAAAD9/wcAAAABAAEAAAD9/wYAAAABAAEAAAD9/wUAAAABAAAAAAD8/wgAAAABAAIAAAD8/wcAAAABAAEAAAD8/wYAAAABAAEAAAD8/wUAAAABAAAAAAD7/wgAAAAAAAIAAAD7/wcAAAAAAAEAAAD7/wYAAAAAAAEAAAD7/wUAAAAAAAAAAAADAAIAAAACAAIAAAADAAEAAAACAAEAAAADAAAAAAACAAEAAAADAP//AAACAAEAAAADAP7/AAACAAAAAAACAAIAAAABAAIAAAACAAEAAAABAAEAAAACAAAAAAABAAEAAAACAP//AAABAAEAAAACAP7/AAABAAAAAAABAAIAAAABAAIAAAABAAEAAAABAAEAAAABAP//AAABAAEAAAABAP7/AAABAAAAAAAAAAIAAAABAAIAAAAAAAEAAAABAAEAAAAAAP//AAABAAEAAAAAAP7/AAABAAAAAAD//wIAAAABAAIAAAD//wEAAAABAAEAAAD//wAAAAABAAEAAAD/////AAABAAEAAAD///7/AAABAAAAAAD+/wIAAAAAAAIAAAD+/wEAAAAAAAEAAAD+/wAAAAAAAAEAAAD+////AAAAAAEAAAD+//7/AAAAAAAAAAAJAPX/AAACAAIAAAAJAPT/AAACAAAAAAAIAPX/AAAAAAIAAAAIAPT/AAAAAAAAAAANAPf/AAACAAIAAAANAPb/AAACAAAAAAAMAPf/AAAAAAIAAAAMAPb/AAAAAAEAAAAMAPX/AAAAAAAAAAAFAPT/AAACAAMAAAAEAPT/AAABAAMAAAADAPT/AAAAAAMAAAARAPP/AAACAAIAAAARAPL/AAACAAAAAAAQAPP/AAABAAIAAAAQAPL/AAABAAAAAAAPAPP/AAABAAIAAAAPAPL/AAABAAAAAAAOAPP/AAABAAIAAAAOAPL/AAABAAAAAAANAPP/AAABAAIAAAANAPL/AAABAAAAAAAMAPP/AAAAAAIAAAAMAPL/AAAAAAAAAAD+//X/AAABAAIAAAD+//T/AAAFAAEAAAD9//X/AAAAAAIAAAD9//T/AAAAAAAAAAD///X/AAABAAIAAAD///T/AAAEAAEAAAAAAPX/AAACAAIAAAAAAPT/AAACAAAAAAD///P/AAACAAAAAAD+//P/AAAAAAAAAAABAAAAAAABAAEAAAAAAAAAAAABAAEAAAA=")
 tile_set = SubResource("TileSet_1kx1b")
+
+[node name="DeathBox" parent="." instance=ExtResource("7_yynel")]
+position = Vector2(-318, 291)
+scale = Vector2(10.272, 0.55089)
+
+[connection signal="restart" from="Player" to="." method="_on_restart"]
+[connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]
