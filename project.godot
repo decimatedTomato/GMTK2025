@@ -25,6 +25,11 @@ window/size/viewport_height=480
 
 project/assembly_name="gmtk2025"
 
+[editor]
+
+version_control/plugin_name="GitPlugin"
+version_control/autoload_on_startup=true
+
 [input]
 
 move_right={
