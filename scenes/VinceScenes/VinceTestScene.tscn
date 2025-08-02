@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://ruvc0jloqiwp"]
+[gd_scene load_steps=8 format=3 uid="uid://ruvc0jloqiwp"]
 
 [ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/VinceScripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cw5y5fpsvl484" path="res://scenes/VinceScenes/player.tscn" id="1_o5qli"]
 [ext_resource type="PackedScene" uid="uid://bds40bph7ucjn" path="res://scenes/VinceScenes/mob.tscn" id="2_sugp2"]
 [ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/VinceScenes/shadow.tscn" id="3_pqswy"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/VinceScenes/endLocation.tscn" id="5_pqswy"]
+[ext_resource type="PackedScene" uid="uid://bkg07ke3vrxjg" path="res://scenes/VinceScenes/spawn_manager.tscn" id="6_0clep"]
+[ext_resource type="PackedScene" uid="uid://bgr010o7fytcq" path="res://scenes/VinceScenes/spawn_point.tscn" id="7_ogvv1"]
 
 [node name="VinceTestScene" type="Node"]
 script = ExtResource("1_0wfyh")
@@ -19,7 +21,24 @@ wait_time = 0.05
 autostart = true
 
 [node name="endLocation" parent="." instance=ExtResource("5_pqswy")]
-position = Vector2(430, 151)
+position = Vector2(405, 241)
+
+[node name="SpawnManager" parent="." instance=ExtResource("6_0clep")]
+
+[node name="SpawnPoint" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
+position = Vector2(254, 371)
+
+[node name="SpawnPoint2" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
+position = Vector2(251, 113)
+
+[node name="SpawnPoint3" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
+position = Vector2(166, 236)
+
+[node name="SpawnPoint4" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
+position = Vector2(367, 444)
+
+[node name="SpawnPoint5" parent="SpawnManager" instance=ExtResource("7_ogvv1")]
+position = Vector2(372, 31)
 
 [connection signal="hit" from="Player" to="." method="_on_player_hit"]
 [connection signal="hit" from="Player" to="." method="game_over"]
