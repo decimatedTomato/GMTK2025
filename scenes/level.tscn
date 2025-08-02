@@ -1,11 +1,15 @@
-[gd_scene load_steps=11 format=4 uid="uid://sgaqo3xd50ep"]
+[gd_scene load_steps=15 format=4 uid="uid://sgaqo3xd50ep"]
 
 [ext_resource type="Texture2D" uid="uid://dp4nuwh2k2go3" path="res://assets/tempTilemap.png" id="1_2q6dc"]
-[ext_resource type="Script" uid="uid://iojnrdjclb0m" path="res://scenes/level.gd" id="1_ppgk2"]
+[ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/main.gd" id="1_2r41h"]
 [ext_resource type="Texture2D" uid="uid://bxio8fpvvjg3v" path="res://assets/background_temp.png" id="2_2r41h"]
-[ext_resource type="PackedScene" uid="uid://c4k53ba58itnm" path="res://scenes/Player.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/shadow.tscn" id="2_klq6b"]
+[ext_resource type="PackedScene" uid="uid://cvkdj4nek1ceh" path="res://scenes/Player.tscn" id="2_w7c3h"]
 [ext_resource type="PackedScene" uid="uid://brvt1ey3jp0i0" path="res://scenes/deathBox.tscn" id="3_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://celww7vgvghtf" path="res://assets/cave tileset.png" id="6_2r41h"]
+[ext_resource type="PackedScene" uid="uid://b6kjojknc3e4o" path="res://scenes/spawn_manager.tscn" id="8_8c41q"]
+[ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/spawn_point.tscn" id="9_olg7q"]
+[ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_olg7q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klq6b"]
 texture = ExtResource("6_2r41h")
@@ -233,8 +237,8 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_w7c3h")
 
 [node name="Level" type="Node2D"]
-position = Vector2(0, -195)
-script = ExtResource("1_ppgk2")
+script = ExtResource("1_2r41h")
+shadow_scene = ExtResource("2_klq6b")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.9, 0.9)
@@ -266,4 +270,47 @@ position = Vector2(733, -439)
 position = Vector2(-2445, 291)
 scale = Vector2(100, 1)
 
-[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[node name="ShadowPositionTimer" type="Timer" parent="."]
+wait_time = 0.05
+autostart = true
+
+[node name="SpawnManager" parent="." instance=ExtResource("8_8c41q")]
+
+[node name="SpawnPoint" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(747, -312)
+
+[node name="SpawnPoint6" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(592, -180)
+
+[node name="SpawnPoint7" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(502, -406)
+
+[node name="SpawnPoint8" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(558, -335)
+
+[node name="SpawnPoint9" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(476, -212)
+
+[node name="SpawnPoint10" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(379, -350)
+
+[node name="SpawnPoint11" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(748, -182)
+
+[node name="SpawnPoint2" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(743, -446)
+
+[node name="SpawnPoint3" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(666, -320)
+
+[node name="SpawnPoint4" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(600, -412)
+
+[node name="SpawnPoint5" parent="SpawnManager" instance=ExtResource("9_olg7q")]
+position = Vector2(568, -271)
+
+[node name="endLocation" parent="." instance=ExtResource("10_olg7q")]
+position = Vector2(3, -24)
+
+[connection signal="restart" from="Player" to="." method="_on_restart"]
+[connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]

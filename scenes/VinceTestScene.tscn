@@ -1,11 +1,11 @@
 [gd_scene load_steps=11 format=4 uid="uid://ruvc0jloqiwp"]
 
-[ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/VinceScripts/main.gd" id="1_0wfyh"]
+[ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/main.gd" id="1_0wfyh"]
 [ext_resource type="PackedScene" uid="uid://cvkdj4nek1ceh" path="res://scenes/Player.tscn" id="2_0clep"]
-[ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/VinceScenes/shadow.tscn" id="2_yynel"]
-[ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/VinceScenes/endLocation.tscn" id="5_pqswy"]
-[ext_resource type="PackedScene" uid="uid://b6kjojknc3e4o" path="res://scenes/VinceScenes/spawn_manager.tscn" id="6_0clep"]
-[ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/VinceScenes/spawn_point.tscn" id="7_ogvv1"]
+[ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/shadow.tscn" id="2_yynel"]
+[ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="5_pqswy"]
+[ext_resource type="PackedScene" uid="uid://b6kjojknc3e4o" path="res://scenes/spawn_manager.tscn" id="6_0clep"]
+[ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/spawn_point.tscn" id="7_ogvv1"]
 [ext_resource type="PackedScene" uid="uid://brvt1ey3jp0i0" path="res://scenes/deathBox.tscn" id="7_yynel"]
 [ext_resource type="Texture2D" uid="uid://celww7vgvghtf" path="res://assets/cave tileset.png" id="8_yynel"]
 
@@ -181,8 +181,6 @@ shadow_scene = ExtResource("2_yynel")
 
 [node name="Player" parent="." instance=ExtResource("2_0clep")]
 position = Vector2(20, 100)
-collision_layer = 3
-collision_mask = 3
 
 [node name="ShadowPositionTimer" type="Timer" parent="."]
 wait_time = 0.05
@@ -190,8 +188,6 @@ autostart = true
 
 [node name="endLocation" parent="." instance=ExtResource("5_pqswy")]
 position = Vector2(194, 90)
-collision_layer = 2
-collision_mask = 2
 
 [node name="SpawnManager" parent="." instance=ExtResource("6_0clep")]
 

@@ -1,22 +1,22 @@
 [gd_scene load_steps=9 format=3 uid="uid://dma4dkw1hqb5l"]
 
-[ext_resource type="Script" uid="uid://pmie0ho4pf4b" path="res://scripts/VinceScripts/shadow.gd" id="1_j7tw7"]
-[ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_w4lvo"]
+[ext_resource type="Script" uid="uid://pmie0ho4pf4b" path="res://scripts/shadow.gd" id="1_jqplm"]
+[ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_bs2fw"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_4vejd"]
-atlas = ExtResource("2_w4lvo")
+atlas = ExtResource("2_bs2fw")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_ws0vm"]
-atlas = ExtResource("2_w4lvo")
+atlas = ExtResource("2_bs2fw")
 region = Rect2(32, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_rhr3r"]
-atlas = ExtResource("2_w4lvo")
+atlas = ExtResource("2_bs2fw")
 region = Rect2(64, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_t53lx"]
-atlas = ExtResource("2_w4lvo")
+atlas = ExtResource("2_bs2fw")
 region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_s0po5"]
@@ -45,7 +45,7 @@ height = 18.0
 
 [node name="Shadow" type="Area2D" groups=["shadows"]]
 disable_mode = 2
-script = ExtResource("1_j7tw7")
+script = ExtResource("1_jqplm")
 metadata/_edit_group_ = true
 
 [node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]

@@ -25,6 +25,3 @@ func _create_shadow_with_path():
 	
 func _process(delta):
 	pass
-	
-	
-	
