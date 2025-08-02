@@ -14,11 +14,12 @@ config/name="gmtk2025"
 run/main_scene="uid://ruvc0jloqiwp"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://sgaqo3xd50ep"
 
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=720
+window/size/viewport_height=480
 
 [dotnet]
 

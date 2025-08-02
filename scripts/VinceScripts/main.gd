@@ -1,26 +1,8 @@
 extends Node
 
 @export var mob_scene: PackedScene
+@export var shadow_scene: PackedScene
 var score
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
-
-func game_over():
-	$ScoreTimer.stop()
-	$MobTimer.stop()
-	$HUD.show_game_over()
-
-func new_game():
-	score = 0
-	$Player.start($StartPosition.position)
-	get_tree().call_group("mobs", "queue_free")
-	$StartTimer.start()
-	$HUD.update_score(score)
-	$HUD.show_message("Get Ready")
-
 
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
@@ -48,11 +30,19 @@ func _on_mob_timer_timeout():
 	add_child(mob)
 
 
-func _on_score_timer_timeout():
-	score += 1
-	$HUD.update_score(score)
-
-
-func _on_start_timer_timeout():
-	$MobTimer.start()
-	$ScoreTimer.start()
+func _on_player_hit():
+	_create_shadow_with_path()
+	
+func _create_shadow_with_path():
+	$ShadowPositionTimer.stop()
+	var positionArray = $Player.positionArray
+	var shadow = shadow_scene.instantiate()
+	shadow.position = positionArray[0]
+	add_child(shadow)
+	shadow._setup_shadow(positionArray, $ShadowPositionTimer.wait_time)
+	
+func _process(delta):
+	pass
+	
+	
+	
