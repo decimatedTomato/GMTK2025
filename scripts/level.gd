@@ -1,9 +1,11 @@
 extends Node
 
 @export var shadow_scene: PackedScene
-var score
+
+var score = 0
 
 func _ready():
+	$Hud/MarginContainer/HBoxContainer/Score.text = str(score)
 	$Player.position = $SpawnManager._get_next_spawn_point()
 
 func _on_restart():
@@ -11,8 +13,9 @@ func _on_restart():
 	$Player._reset()
 	$Player.position = $SpawnManager._get_next_spawn_point()
 	get_tree().call_group("shadows", "_reset")
+	score += 1
+	$Hud/MarginContainer/HBoxContainer/Score.text = str(score)
 	$Player.show()
-	
 	
 func _create_shadow_with_path():
 	$ShadowPositionTimer.stop()

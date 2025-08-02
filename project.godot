@@ -32,6 +32,10 @@ project/assembly_name="gmtk2025"
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
+[gui]
+
+theme/custom_font="uid://dhw51fuq2ii5b"
+
 [input]
 
 move_right={
