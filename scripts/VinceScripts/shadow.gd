@@ -1,12 +1,12 @@
 extends Area2D
 
 var positions = []
-var currentIndex = 0
+var currentIndex
 var timeBetweenPoints
-var elapsed = 0
+var elapsed
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	pass
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -31,5 +31,11 @@ func _process(delta):
 func _setup_shadow(positionArray, timer):
 	positions = positionArray
 	timeBetweenPoints = timer
+	_reset()
+	
+func _reset():
+	currentIndex = 0
+	elapsed = 0
 	position = positions[0]
+	show()
 	set_process(true)

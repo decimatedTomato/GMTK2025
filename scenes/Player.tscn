@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c4k53ba58itnm"]
+[gd_scene load_steps=9 format=3 uid="uid://bdc8hxybp43g0"]
 
 [ext_resource type="Script" uid="uid://cxgmt11kicapo" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
 [ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_g2brh"]

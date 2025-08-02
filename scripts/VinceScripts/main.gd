@@ -4,6 +4,9 @@ extends Node
 @export var shadow_scene: PackedScene
 var score
 
+func _ready():
+	$Player.position = $SpawnManager._get_next_spawn_point()
+
 func _on_mob_timer_timeout():
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
@@ -32,6 +35,11 @@ func _on_mob_timer_timeout():
 
 func _on_player_hit():
 	_create_shadow_with_path()
+	$Player._reset()
+	$Player.position = $SpawnManager._get_next_spawn_point()
+	get_tree().call_group("shadows", "_reset")
+	$Player.show()
+	
 	
 func _create_shadow_with_path():
 	$ShadowPositionTimer.stop()
@@ -40,6 +48,7 @@ func _create_shadow_with_path():
 	shadow.position = positionArray[0]
 	add_child(shadow)
 	shadow._setup_shadow(positionArray, $ShadowPositionTimer.wait_time)
+	$ShadowPositionTimer.start()
 	
 func _process(delta):
 	pass
