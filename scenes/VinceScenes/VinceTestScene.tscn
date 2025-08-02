@@ -15,7 +15,7 @@ shadow_scene = ExtResource("3_pqswy")
 position = Vector2(65, 149)
 
 [node name="ShadowPositionTimer" type="Timer" parent="."]
-wait_time = 0.1
+wait_time = 0.05
 autostart = true
 
 [node name="endLocation" parent="." instance=ExtResource("5_pqswy")]
