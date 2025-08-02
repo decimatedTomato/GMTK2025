@@ -6,7 +6,7 @@ var full_screen = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	self.text = get_printable_time()
 
 # Called when the node enters the scene tree for the first time.
@@ -19,7 +19,7 @@ func _ready() -> void:
 func get_printable_time():
 	return str(int(timer.get_time_left()))
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if full_screen != DisplayServer.window_get_mode():
 		full_screen = DisplayServer.window_get_mode()
 		call_deferred("window_resized")

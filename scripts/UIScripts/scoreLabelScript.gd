@@ -8,7 +8,7 @@ func _ready() -> void:
 	full_screen = DisplayServer.window_get_mode()
 	call_deferred("set_children", self.get_children())
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if full_screen != DisplayServer.window_get_mode():
 		full_screen = DisplayServer.window_get_mode()
 		call_deferred("window_resized")

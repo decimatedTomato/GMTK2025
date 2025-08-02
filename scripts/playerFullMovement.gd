@@ -1,7 +1,6 @@
 class_name Player
 extends CharacterBody2D
 
-signal hit
 signal restart
 
 var DEATH_PENALTY = 10
@@ -99,4 +98,9 @@ func _reset():
 	shadowData = []
 
 func is_not_on_slippy_wall():
-	return is_on_wall() and not $SlippyRayCast.is_colliding() and not $SlippyRayCast2.is_colliding()
+	if not is_on_wall():
+		return false
+	var areas = $Area2D.get_overlapping_areas()
+	print(len(areas))
+	for area in areas:
+		print(area)
