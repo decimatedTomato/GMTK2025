@@ -1,15 +1,20 @@
-[gd_scene load_steps=3 format=3 uid="uid://sdlbce3p0a00"]
+[gd_scene load_steps=4 format=3 uid="uid://sdlbce3p0a00"]
 
 [ext_resource type="Script" uid="uid://n8mj52oyjxxv" path="res://scripts/check_point.gd" id="1_od5km"]
+[ext_resource type="Texture2D" uid="uid://cndbfpk533tn1" path="res://assets/tempflag.png" id="2_klegx"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqoq"]
-size = Vector2(561, 136)
+size = Vector2(97.5, 57)
 
 [node name="CheckPoint" type="Area2D"]
 script = ExtResource("1_od5km")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(281, 68)
+position = Vector2(49.25, 107.5)
 shape = SubResource("RectangleShape2D_3gqoq")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(45, 120)
+texture = ExtResource("2_klegx")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

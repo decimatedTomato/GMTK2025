@@ -283,40 +283,26 @@ autostart = true
 checkPoints = [NodePath("CheckPoint0"), NodePath("CheckPoint1")]
 
 [node name="CheckPoint0" parent="SpawnManager" instance=ExtResource("10_64w2a")]
-position = Vector2(718, -471)
-scale = Vector2(0.1, 0.3)
+position = Vector2(699, -568)
 
 [node name="SpawnPoint" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_olg7q")]
-position = Vector2(310, 523.333)
+position = Vector2(-206, 1020)
 scale = Vector2(10, 3.33333)
 
 [node name="SpawnPoint6" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_olg7q")]
-position = Vector2(-1240, 963.333)
+position = Vector2(-1548, 1220.33)
 scale = Vector2(10, 3.33333)
 
 [node name="SpawnPoint7" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_olg7q")]
-position = Vector2(-2140, 210)
+position = Vector2(-2448, 467)
 scale = Vector2(10, 3.33333)
 
 [node name="SpawnPoint8" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_olg7q")]
-position = Vector2(-1580, 446.667)
-scale = Vector2(10, 3.33333)
-
-[node name="SpawnPoint9" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_olg7q")]
-position = Vector2(-2400, 856.667)
-scale = Vector2(10, 3.33333)
-
-[node name="SpawnPoint10" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_olg7q")]
-position = Vector2(-3370, 396.667)
-scale = Vector2(10, 3.33333)
-
-[node name="SpawnPoint11" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_olg7q")]
-position = Vector2(780, 810)
+position = Vector2(-1880, 711.667)
 scale = Vector2(10, 3.33333)
 
 [node name="CheckPoint1" parent="SpawnManager" instance=ExtResource("10_64w2a")]
-position = Vector2(-884, -636)
-scale = Vector2(0.2, 0.8)
+position = Vector2(-871, -664)
 checkpoint_id = 1
 
 [node name="SpawnPoint" parent="SpawnManager/CheckPoint1" instance=ExtResource("9_olg7q")]
@@ -324,7 +310,7 @@ position = Vector2(615, 222.5)
 scale = Vector2(10, 3.33333)
 
 [node name="SpawnPoint7" parent="SpawnManager/CheckPoint1" instance=ExtResource("9_olg7q")]
-position = Vector2(1505, 212.5)
+position = Vector2(1374, 260)
 scale = Vector2(10, 3.33333)
 
 [node name="SpawnPoint8" parent="SpawnManager/CheckPoint1" instance=ExtResource("9_olg7q")]
@@ -336,8 +322,7 @@ position = Vector2(885, 400)
 scale = Vector2(10, 3.33333)
 
 [node name="CheckPoint2" parent="SpawnManager" instance=ExtResource("10_64w2a")]
-position = Vector2(-923, 155)
-scale = Vector2(0.1, 0.4)
+position = Vector2(-958, 72)
 
 [node name="endLocation" parent="." instance=ExtResource("10_olg7q")]
 position = Vector2(3, -24)
@@ -348,6 +333,7 @@ one_shot = true
 autostart = true
 
 [node name="Hud" parent="." instance=ExtResource("11_t1rx8")]
+visible = false
 
 [node name="Timer" parent="Hud/MarginContainer/HBoxContainer" index="1" node_paths=PackedStringArray("timer")]
 timer = NodePath("../../../../TotalRunTimer")
