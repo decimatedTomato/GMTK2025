@@ -1,5 +1,6 @@
-[gd_scene load_steps=5 format=3 uid="uid://76m8ch5ccxjm"]
+[gd_scene load_steps=6 format=3 uid="uid://76m8ch5ccxjm"]
 
+[ext_resource type="Script" uid="uid://dhkmgjxjx6fy7" path="res://scripts/VinceScripts/end_location.gd" id="1_1sf0g"]
 [ext_resource type="Texture2D" uid="uid://c078vjxap4eqk" path="res://art/Temporary/enemyFlyingAlt_1.png" id="1_xjvro"]
 [ext_resource type="Texture2D" uid="uid://44t6pw60k8c7" path="res://art/Temporary/enemyFlyingAlt_2.png" id="2_1sf0g"]
 
@@ -18,17 +19,19 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xjvro"]
-radius = 42.0
-height = 98.0
+radius = 47.0
+height = 126.0
 
-[node name="endLocation" type="RigidBody2D"]
-gravity_scale = 0.0
+[node name="endLocation" type="Area2D"]
+script = ExtResource("1_1sf0g")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.04, 0.04)
+scale = Vector2(0.25, 0.25)
 sprite_frames = SubResource("SpriteFrames_0kxvy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
-scale = Vector2(0.08, 0.08)
+scale = Vector2(0.25, 0.25)
 shape = SubResource("CapsuleShape2D_xjvro")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

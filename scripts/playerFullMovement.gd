@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal hit
+signal restart
 
 @export var walk_speed = 600.0
 @export var run_speed = 800.0
@@ -20,6 +21,8 @@ var is_dashing = false
 var dash_start_pos = 0
 var dash_dir = 0
 var dash_timer = 0
+
+var positionArray = []
 
 @onready var animation_sprite = $AnimatedSprite2D
 
@@ -75,4 +78,14 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die():
+	hide()
 	hit.emit()
+	
+func _on_shadow_position_timer_timeout():
+	positionArray.append(position);
+	
+func _restart():
+	restart.emit()
+	
+func _reset():
+	positionArray = []
