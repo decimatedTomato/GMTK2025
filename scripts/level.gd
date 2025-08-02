@@ -8,7 +8,6 @@ func _ready():
 	$Hud/MarginContainer/HBoxContainer/Score.text = str(score)
 	$Player.position = $SpawnManager._get_next_spawn_point()
 	$Pauser._pause()
-	
 
 func _on_restart():
 	_create_shadow_with_path()
@@ -19,7 +18,7 @@ func _on_restart():
 	$Hud/MarginContainer/HBoxContainer/Score.text = str(score)
 	$Player.show()
 	$Pauser._pause()
-	
+
 func _create_shadow_with_path():
 	$ShadowPositionTimer.stop()
 	var shadowData = $Player.shadowData
