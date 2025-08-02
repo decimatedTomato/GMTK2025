@@ -1,56 +1,54 @@
 [gd_scene load_steps=9 format=3 uid="uid://c4k53ba58itnm"]
 
-[ext_resource type="Script" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
-[ext_resource type="Texture2D" uid="uid://dwhut2fxyipmv" path="res://art/Temporary/playerGrey_up1.png" id="2_rhr3r"]
-[ext_resource type="Texture2D" uid="uid://bv6gpkpcy0wrw" path="res://art/Temporary/playerGrey_up2.png" id="3_t53lx"]
-[ext_resource type="Texture2D" uid="uid://bvydpdk5nb5aj" path="res://art/Temporary/playerGrey_walk1.png" id="4_yi2kj"]
-[ext_resource type="Texture2D" uid="uid://dk0c1t3qf401f" path="res://art/Temporary/playerGrey_walk2.png" id="5_cibgq"]
+[ext_resource type="Script" uid="uid://cxgmt11kicapo" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
+[ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_g2brh"]
 
 [sub_resource type="Curve" id="Curve_ws0vm"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.372093, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.682718), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
 point_count = 4
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_mfdas"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_4vejd"]
+atlas = ExtResource("2_g2brh")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ws0vm"]
+atlas = ExtResource("2_g2brh")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rhr3r"]
+atlas = ExtResource("2_g2brh")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t53lx"]
+atlas = ExtResource("2_g2brh")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_yi2kj"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_rhr3r")
+"texture": SubResource("AtlasTexture_4vejd")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_t53lx")
+"texture": SubResource("AtlasTexture_ws0vm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rhr3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t53lx")
 }],
 "loop": true,
-"name": &"jump",
-"speed": 2.0
-}, {
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_yi2kj")
-}, {
-"duration": 1.0,
-"texture": ExtResource("5_cibgq")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 2.0
+"name": &"Idle",
+"speed": 5.0
 }]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_8nwgm"]
-radius = 65.0
-height = 164.0
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ws0vm")
 dash_curve = SubResource("Curve_ws0vm")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(1.2, 1.2)
-sprite_frames = SubResource("SpriteFrames_mfdas")
-animation = &"jump"
-frame_progress = 0.125018
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CapsuleShape2D_8nwgm")
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+polygon = PackedVector2Array(30, 48, 30, -5, 48, -17.5, 48, -44, -48, -44, -48, -12.5, -29.5, 2.5, -29.5, 48)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -64,3 +62,11 @@ drag_top_margin = 0.1
 drag_right_margin = 0.1
 drag_bottom_margin = 0.1
 editor_draw_drag_margin = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+texture_filter = 1
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_yi2kj")
+animation = &"Idle"
+autoplay = "Idle"
+frame_progress = 0.891917
