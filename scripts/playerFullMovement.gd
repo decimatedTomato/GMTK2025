@@ -4,6 +4,9 @@ extends CharacterBody2D
 signal hit
 signal restart
 
+var DEATH_PENALTY = 10
+@export var TotalRunTimer: Timer;
+
 @export var walk_speed = 600.0
 @export var run_speed = 800.0
 @export_range(0, 1) var acceleration = 0.1
@@ -78,8 +81,10 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die():
-	hide()
-	hit.emit()
+	# hit.emit()
+	restart.emit()
+	TotalRunTimer.wait_time -= DEATH_PENALTY
+
 
 func _on_shadow_position_timer_timeout():
 	shadowData.append({"position": position, "flip_h": animation_sprite.flip_h});

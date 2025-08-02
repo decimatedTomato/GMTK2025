@@ -265,8 +265,9 @@ tile_map_data = PackedByteArray("AAD9/wAAAAABAAAAAAD+/wAAAAABAAAAAAD//wAAAAABAAA
 tile_set = SubResource("TileSet_5xgho")
 collision_enabled = false
 
-[node name="Player" parent="." instance=ExtResource("2_w7c3h")]
+[node name="Player" parent="." node_paths=PackedStringArray("TotalRunTimer") instance=ExtResource("2_w7c3h")]
 position = Vector2(733, -439)
+TotalRunTimer = NodePath("../TotalRunTimer")
 dash_speed = 500.0
 
 [node name="DeathBox" parent="." instance=ExtResource("3_mx8sn")]
