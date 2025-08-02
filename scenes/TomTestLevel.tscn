@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://c4k53ba58itnm" path="res://scenes/Player.tscn" id="2_orf8y"]
 [ext_resource type="PackedScene" uid="uid://brvt1ey3jp0i0" path="res://scenes/deathBox.tscn" id="3_hdjwj"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_orf8y"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hdjwj"]
 texture = ExtResource("1_11fv7")
 0:0/0 = 0
 0:0/0/terrain_set = 0
@@ -168,7 +168,7 @@ physics_layer_0/collision_layer = 1
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
-sources/0 = SubResource("TileSetAtlasSource_orf8y")
+sources/0 = SubResource("TileSetAtlasSource_hdjwj")
 
 [node name="TomTestLevel" type="Node2D"]
 
@@ -182,4 +182,3 @@ position = Vector2(-19, -244)
 [node name="DeathBox" parent="." instance=ExtResource("3_hdjwj")]
 position = Vector2(-647, 296)
 scale = Vector2(2.29949, -0.240022)
-monitoring = true
