@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cvkdj4nek1ceh"]
+[gd_scene load_steps=10 format=3 uid="uid://cvkdj4nek1ceh"]
 
 [ext_resource type="Script" uid="uid://cxgmt11kicapo" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
 [ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_g2brh"]
@@ -43,6 +43,10 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6fml"]
+radius = 14.0
+height = 28.0
+
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 3
 collision_mask = 3
@@ -77,3 +81,24 @@ texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_yi2kj")
 animation = &"Idle"
+
+[node name="Area2D" type="Area2D" parent="."]
+visible = false
+collision_layer = 4
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+visible = false
+shape = SubResource("CapsuleShape2D_v6fml")
+
+[node name="SlippyRayCast" type="RayCast2D" parent="."]
+target_position = Vector2(16, 0)
+collision_mask = 4
+
+[node name="SlippyRayCast2" type="RayCast2D" parent="."]
+position = Vector2(-2, 0)
+target_position = Vector2(-13, 0)
+collision_mask = 4
+
+[connection signal="area_entered" from="Area2D" to="." method="_onSlippyWallsEntered"]
+[connection signal="area_exited" from="Area2D" to="." method="_onSlippyWallsExited"]

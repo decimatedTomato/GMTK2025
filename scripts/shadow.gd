@@ -21,21 +21,21 @@ func _process(delta):
 
 	var start = shadowData[currentIndex]["position"]
 	var end = shadowData[currentIndex + 1]["position"]
-	
+
 	$AnimatedSprite2D.flip_h = shadowData[currentIndex]["flip_h"]
-	
+
 	position = start.lerp(end, t)
 
 	if t >= 1.0:
 		currentIndex += 1
 		elapsed = 0.0
-	
-	
+
+
 func _setup_shadow(data, timer):
 	shadowData = data
 	timeBetweenPoints = timer
 	_reset()
-	
+
 func _reset():
 	currentIndex = 0
 	elapsed = 0

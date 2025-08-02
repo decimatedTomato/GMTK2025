@@ -5,6 +5,7 @@ signal hit
 signal restart
 
 var DEATH_PENALTY = 10
+@export var tileMapLayer: TileMapLayer;
 @export var TotalRunTimer: Timer;
 
 @export var walk_speed = 600.0
@@ -25,6 +26,8 @@ var dash_start_pos = 0
 var dash_dir = 0
 var dash_timer = 0
 
+var slippedUp = false;
+
 var shadowData = []
 
 @onready var animation_sprite = $AnimatedSprite2D
@@ -35,7 +38,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Jumping
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_not_on_slippy_wall()):
 		velocity.y = jump_velocity
 
 	if Input.is_action_just_released("jump") and velocity.y < 0:
@@ -94,3 +97,6 @@ func _restart():
 
 func _reset():
 	shadowData = []
+
+func is_not_on_slippy_wall():
+	return is_on_wall() and not $SlippyRayCast.is_colliding() and not $SlippyRayCast2.is_colliding()
