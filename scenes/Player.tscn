@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cvkdj4nek1ceh"]
+[gd_scene load_steps=11 format=3 uid="uid://cvkdj4nek1ceh"]
 
 [ext_resource type="Script" uid="uid://cxgmt11kicapo" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
 [ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_g2brh"]
@@ -43,13 +43,16 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="GDScript" id="GDScript_v6fml"]
+script/source = "extends Area2D
+"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v6fml"]
 radius = 8.0
 height = 20.0
 
 [node name="Player" type="CharacterBody2D"]
-collision_layer = 3
-collision_mask = 3
+collision_mask = 30
 script = ExtResource("1_ws0vm")
 walk_speed = 150.0
 run_speed = 300.0
@@ -85,6 +88,16 @@ animation = &"Idle"
 [node name="Area2D" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 8
+script = SubResource("GDScript_v6fml")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_v6fml")
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
+[connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
+[connection signal="area_shape_exited" from="Area2D" to="." method="_on_area_2d_area_shape_exited"]
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
+[connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]

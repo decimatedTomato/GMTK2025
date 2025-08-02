@@ -250,7 +250,7 @@ texture = ExtResource("6_2r41h")
 
 [sub_resource type="TileSet" id="TileSet_b121j"]
 physics_layer_0/collision_layer = 4
-physics_layer_1/collision_layer = 8
+physics_layer_1/collision_layer = 9
 terrain_set_0/mode = 0
 terrain_set_0/terrain_0/name = "Grippy"
 terrain_set_0/terrain_0/color = Color(72.928, 99.388, 95.58, 1)

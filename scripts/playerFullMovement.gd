@@ -25,7 +25,7 @@ var dash_start_pos = 0
 var dash_dir = 0
 var dash_timer = 0
 
-var slippedUp = false;
+var slippedUp := false;
 
 var shadowData = []
 
@@ -37,7 +37,7 @@ func _physics_process(delta: float) -> void:
 		velocity += get_gravity() * delta
 
 	# Jumping
-	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_not_on_slippy_wall()):
+	if Input.is_action_just_pressed("jump") and (is_on_floor() or may_wall_jump()):
 		velocity.y = jump_velocity
 
 	if Input.is_action_just_released("jump") and velocity.y < 0:
@@ -97,10 +97,20 @@ func _restart():
 func _reset():
 	shadowData = []
 
-func is_not_on_slippy_wall():
-	if not is_on_wall():
-		return false
-	var areas = $Area2D.get_overlapping_areas()
-	print(len(areas))
-	for area in areas:
-		print(area)
+func may_wall_jump():
+	return is_on_wall() and not slippedUp
+
+func _on_area_2d_body_entered(_body: Node2D) -> void:
+	slippedUp = true;
+
+
+#func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	#print("6 happened")
+
+
+func _on_area_2d_body_exited(_body: Node2D) -> void:
+	slippedUp = false;
+
+
+#func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
+	#print("8 happened")
