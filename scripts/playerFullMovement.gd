@@ -1,4 +1,7 @@
+class_name Player
 extends CharacterBody2D
+
+signal hit
 
 @export var walk_speed = 600.0
 @export var run_speed = 800.0
@@ -28,17 +31,17 @@ func _physics_process(delta: float) -> void:
 	# Jumping
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or is_on_wall()):
 		velocity.y = jump_velocity
-		
+
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= decelerate_on_jump_release
-		
+
 	# Running
 	var speed
 	if Input.is_action_pressed("run"):
 		speed = run_speed
 	else:
 		speed = walk_speed
-		
+
 	# Get the input direction and handle the movement/deceleration.
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
@@ -55,7 +58,7 @@ func _physics_process(delta: float) -> void:
 		dash_start_pos = position.x
 		dash_dir = direction
 		dash_timer = dash_cooldown
-		
+
 	# Perform dashing
 	if is_dashing:
 		var current_dist = abs(position.x - dash_start_pos)
@@ -64,10 +67,12 @@ func _physics_process(delta: float) -> void:
 		else:
 			velocity.x = dash_dir * dash_speed * dash_curve.sample(current_dist / dash_max_distance)
 			velocity.y = 0
-			
+
 	# Reduce dash timer
 	if dash_timer > 0:
 		dash_timer -= delta
-		
+
 	move_and_slide()
-	
+
+func die():
+	hit.emit()

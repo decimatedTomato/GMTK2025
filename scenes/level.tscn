@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=4 uid="uid://sgaqo3xd50ep"]
+[gd_scene load_steps=8 format=4 uid="uid://sgaqo3xd50ep"]
 
 [ext_resource type="Texture2D" uid="uid://dp4nuwh2k2go3" path="res://assets/tempTilemap.png" id="1_2q6dc"]
+[ext_resource type="Script" uid="uid://iojnrdjclb0m" path="res://scenes/level.gd" id="1_ppgk2"]
 [ext_resource type="PackedScene" uid="uid://c4k53ba58itnm" path="res://scenes/character_body_2d.tscn" id="2_w7c3h"]
+[ext_resource type="PackedScene" uid="uid://brvt1ey3jp0i0" path="res://scenes/deathBox.tscn" id="3_mx8sn"]
 [ext_resource type="Texture2D" uid="uid://5enlfahk6xws" path="res://assets/background.png" id="3_w8frs"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_w7c3h"]
@@ -57,6 +59,7 @@ sources/0 = SubResource("TileSetAtlasSource_w7c3h")
 
 [node name="Level" type="Node2D"]
 position = Vector2(0, -195)
+script = ExtResource("1_ppgk2")
 
 [node name="Parallax2D" type="Parallax2D" parent="."]
 scroll_scale = Vector2(0.3, 0.3)
@@ -76,3 +79,12 @@ tile_set = SubResource("TileSet_5xgho")
 [node name="Player" parent="." instance=ExtResource("2_w7c3h")]
 position = Vector2(-1939, 240)
 jump_velocity = -800.0
+
+[node name="DeathBox" parent="." instance=ExtResource("3_mx8sn")]
+position = Vector2(-1751, 1350)
+scale = Vector2(100, 1)
+monitoring = true
+
+[connection signal="hit" from="Player" to="." method="_on_player_hit"]
+[connection signal="area_entered" from="DeathBox" to="Player" method="_on_death_box_area_entered"]
+[connection signal="body_entered" from="DeathBox" to="Player" method="_on_death_box_body_entered"]
