@@ -45,10 +45,16 @@ animations = [{
 
 [node name="Player" type="CharacterBody2D"]
 script = ExtResource("1_ws0vm")
+walk_speed = 300.0
+run_speed = 600.0
+jump_velocity = -350.0
+dash_speed = 150.0
+dash_max_distance = 100.0
 dash_curve = SubResource("Curve_ws0vm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
-polygon = PackedVector2Array(30, 48, 30, -5, 48, -17.5, 48, -44, -48, -44, -48, -12.5, -29.5, 2.5, -29.5, 48)
+position = Vector2(-13, -21)
+polygon = PackedVector2Array(17, 29, 19, 28, 19, 15, 8, 15, 8, 28, 10, 29)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(0.5, 0.5)
@@ -65,8 +71,6 @@ editor_draw_drag_margin = true
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
-scale = Vector2(3, 3)
+scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_yi2kj")
 animation = &"Idle"
-autoplay = "Idle"
-frame_progress = 0.891917

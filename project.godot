@@ -14,6 +14,8 @@ config/name="gmtk2025"
 run/main_scene="uid://sgaqo3xd50ep"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+<<<<<<<HEADrun/main_scene="uid://sgaqo3xd50ep"
+
 [display]
 
 window/size/viewport_width=360
@@ -27,6 +29,7 @@ project/assembly_name="gmtk2025"
 
 [editor]
 
+version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
 
 [input]
