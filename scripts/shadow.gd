@@ -1,6 +1,6 @@
 extends Area2D
 
-var positions = []
+var shadowData = []
 var currentIndex
 var timeBetweenPoints
 var elapsed
@@ -11,7 +11,7 @@ func _ready():
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
-	if currentIndex >= positions.size() - 1:
+	if currentIndex >= shadowData.size() - 1:
 		hide()
 		set_process(false)
 		return
@@ -19,8 +19,11 @@ func _process(delta):
 	elapsed += delta
 	var t = min(elapsed / timeBetweenPoints, 1.0)
 
-	var start = positions[currentIndex]
-	var end = positions[currentIndex + 1]
+	var start = shadowData[currentIndex]["position"]
+	var end = shadowData[currentIndex + 1]["position"]
+	
+	$AnimatedSprite2D.flip_h = shadowData[currentIndex]["flip_h"]
+	
 	position = start.lerp(end, t)
 
 	if t >= 1.0:
@@ -28,15 +31,15 @@ func _process(delta):
 		elapsed = 0.0
 	
 	
-func _setup_shadow(positionArray, timer):
-	positions = positionArray
+func _setup_shadow(data, timer):
+	shadowData = data
 	timeBetweenPoints = timer
 	_reset()
 	
 func _reset():
 	currentIndex = 0
 	elapsed = 0
-	position = positions[0]
+	position = shadowData[0]["position"]
 	show()
 	set_process(true)
 

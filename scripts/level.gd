@@ -22,9 +22,9 @@ func _on_restart():
 	
 func _create_shadow_with_path():
 	$ShadowPositionTimer.stop()
-	var positionArray = $Player.positionArray
+	var shadowData = $Player.shadowData
 	var shadow = shadow_scene.instantiate()
-	shadow.position = positionArray[0]
+	shadow.position = shadowData[0]["position"]
 	add_child(shadow)
-	shadow._setup_shadow(positionArray, $ShadowPositionTimer.wait_time)
+	shadow._setup_shadow(shadowData, $ShadowPositionTimer.wait_time)
 	$ShadowPositionTimer.start()

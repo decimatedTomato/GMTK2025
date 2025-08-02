@@ -22,7 +22,7 @@ var dash_start_pos = 0
 var dash_dir = 0
 var dash_timer = 0
 
-var positionArray = []
+var shadowData = []
 
 @onready var animation_sprite = $AnimatedSprite2D
 
@@ -82,10 +82,10 @@ func die():
 	hit.emit()
 	
 func _on_shadow_position_timer_timeout():
-	positionArray.append(position);
+	shadowData.append({"position": position, "flip_h": animation_sprite.flip_h});
 	
 func _restart():
 	restart.emit()
 	
 func _reset():
-	positionArray = []
+	shadowData = []

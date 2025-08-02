@@ -48,7 +48,7 @@ disable_mode = 2
 script = ExtResource("1_jqplm")
 metadata/_edit_group_ = true
 
-[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 modulate = Color(0.351563, 0.351563, 0.351563, 1)
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
