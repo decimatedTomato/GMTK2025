@@ -25,9 +25,10 @@ height = 98.0
 gravity_scale = 0.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.04, 0.04)
 sprite_frames = SubResource("SpriteFrames_0kxvy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 rotation = 1.5708
+scale = Vector2(0.08, 0.08)
 shape = SubResource("CapsuleShape2D_xjvro")
