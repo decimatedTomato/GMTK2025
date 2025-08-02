@@ -14,12 +14,12 @@ config/name="gmtk2025"
 run/main_scene="uid://sgaqo3xd50ep"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
-<<<<<<<HEADrun/main_scene="uid://sgaqo3xd50ep"
-
 [display]
 
-window/size/viewport_width=1920
-window/size/viewport_height=1080
+window/size/viewport_width=360
+window/size/viewport_height=240
+window/stretch/aspect="keep_width"
+window/stretch/scale=5.0
 
 [dotnet]
 
@@ -77,6 +77,7 @@ dash={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
 environment/defaults/default_clear_color=Color(0.597005, 0.120607, 0.681231, 1)
