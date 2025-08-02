@@ -18,6 +18,8 @@ var dash_start_pos = 0
 var dash_dir = 0
 var dash_timer = 0
 
+@onready var animation_sprite = $AnimatedSprite2D
+
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not is_on_floor():
@@ -41,8 +43,11 @@ func _physics_process(delta: float) -> void:
 	var direction := Input.get_axis("move_left", "move_right")
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
+		animation_sprite.flip_h = direction < 0
+		#animation_sprite.play("Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed * deceleration)
+		animation_sprite.play("Idle")
 
 	# Check for dashing
 	if Input.is_action_just_pressed("dash") and direction and not is_dashing and dash_timer <= 0:
@@ -65,3 +70,4 @@ func _physics_process(delta: float) -> void:
 		dash_timer -= delta
 		
 	move_and_slide()
+	
