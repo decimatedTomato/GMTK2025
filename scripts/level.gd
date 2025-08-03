@@ -40,11 +40,12 @@ func _on_death():
 func _create_shadow_with_path():
 	$ShadowPositionTimer.stop()
 	var shadowData = $Player.shadowData
-	var shadow = shadow_scene.instantiate()
-	shadow.position = shadowData[0]["position"]
-	add_child(shadow) # TODO fix error E 0:00:03:564   level.gd:27 @ _create_shadow_with_path(): Can't change this state while flushing queries. Use call_deferred() or set_deferred() to change monitoring state instead.
-	shadow._setup_shadow(shadowData, $ShadowPositionTimer.wait_time)
-	$ShadowPositionTimer.start()
+	if len(shadowData) > 0:
+		var shadow = shadow_scene.instantiate()
+		shadow.position = shadowData[0]["position"]
+		add_child(shadow)
+		shadow._setup_shadow(shadowData, $ShadowPositionTimer.wait_time)
+		$ShadowPositionTimer.start()
 
 func _on_total_run_timer_timeout():
 	$Pauser.endGamePause()

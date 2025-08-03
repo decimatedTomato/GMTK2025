@@ -5,8 +5,8 @@ signal restart
 signal death
 signal deathSoundPlay
 
-var in_safe_zone = false;
-var DEATH_PENALTY = 10
+var INVINCIBILITY_SECONDS := 2;
+var DEATH_PENALTY := 10
 @export var TotalRunTimer: Timer;
 @export var TimerText: Label
 
@@ -23,12 +23,14 @@ var DEATH_PENALTY = 10
 @export var dash_curve : Curve
 @export var dash_cooldown = 1.0
 
+@onready var mortality_timer: Timer = $MortalityTimer
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound;
 @onready var dash_sound: AudioStreamPlayer2D = $DashSound;
 @onready var land_sound: AudioStreamPlayer2D = $LandSound;
 
-var is_in_air = false;
+var is_invincible = false;
 
+var is_in_air = false;
 var is_dashing = false
 var dash_start_pos = 0
 var dash_dir = 0
@@ -107,13 +109,19 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die():
-	if (in_safe_zone):
+	if is_invincible:
 		return
 
 	deathSoundPlay.emit()
 	death.emit()
 	TotalRunTimer.start(TotalRunTimer.get_time_left() - DEATH_PENALTY)
 	TimerText.setTime()
+	restart.emit()
+	TotalRunTimer.wait_time -= DEATH_PENALTY
+	is_invincible = true;
+	mortality_timer.start(INVINCIBILITY_SECONDS);
+
+	
 
 
 func _on_shadow_position_timer_timeout():
@@ -131,22 +139,8 @@ func may_wall_jump():
 func _on_area_2d_body_entered(_body: Node2D) -> void:
 	slippedUp = true;
 
-
-#func _on_area_2d_body_shape_entered(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	#print("6 happened")
-
-
 func _on_area_2d_body_exited(_body: Node2D) -> void:
 	slippedUp = false;
 
-func _on_entered_safe_zone(_body: Node2D) -> void:
-	print("entered safe zone")
-	in_safe_zone = true;
-
-func _on_exit_safe_zone(_body: Node2D) -> void:
-	print("exited safe zone")
-	in_safe_zone = false;
-
-
-#func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
-	#print("8 happened")
+func _end_invincibility_timeout() -> void:
+	is_invincible = false;

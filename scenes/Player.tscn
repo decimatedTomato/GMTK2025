@@ -234,7 +234,7 @@ dash_curve = SubResource("Curve_ws0vm")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
 position = Vector2(-13, -21)
-polygon = PackedVector2Array(17, 29, 19, 28, 19, 15, 8, 15, 8, 28, 10, 29)
+polygon = PackedVector2Array(17, 29, 19, 28, 19, 16, 8, 16, 8, 28, 10, 29)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
@@ -296,6 +296,8 @@ explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_v6fml")
 
 [connection signal="deathSoundPlay" from="." to="AsyncSoundPlayer" method="_play_sound"]
+[node name="MortalityTimer" type="Timer" parent="."]
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
@@ -304,3 +306,4 @@ process_material = SubResource("ParticleProcessMaterial_v6fml")
 [connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
 [connection signal="body_shape_entered" from="Area2D" to="." method="_on_area_2d_body_shape_entered"]
 [connection signal="body_shape_exited" from="Area2D" to="." method="_on_area_2d_body_shape_exited"]
+[connection signal="timeout" from="MortalityTimer" to="." method="_end_invincibility_timeout"]
