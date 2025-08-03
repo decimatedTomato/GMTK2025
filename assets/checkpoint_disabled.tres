@@ -1,0 +1,7 @@
+[gd_resource type="AtlasTexture" load_steps=2 format=3 uid="uid://byha0rkj03ggt"]
+
+[ext_resource type="Texture2D" uid="uid://cxr8oxcvhcfye" path="res://assets/checkpoint.png" id="1_xktm2"]
+
+[resource]
+atlas = ExtResource("1_xktm2")
+region = Rect2(0, 0, 32, 0)

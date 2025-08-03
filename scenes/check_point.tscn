@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://sdlbce3p0a00"]
+[gd_scene load_steps=5 format=3 uid="uid://sdlbce3p0a00"]
 
 [ext_resource type="Script" uid="uid://n8mj52oyjxxv" path="res://scripts/check_point.gd" id="1_od5km"]
-[ext_resource type="Texture2D" uid="uid://cndbfpk533tn1" path="res://assets/tempflag.png" id="2_klegx"]
+[ext_resource type="Texture2D" uid="uid://byha0rkj03ggt" path="res://assets/checkpoint_disabled.tres" id="2_7brbk"]
+[ext_resource type="Texture2D" uid="uid://chsecjtoi782c" path="res://assets/checkpoint_enabled.tres" id="3_xx78p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gqoq"]
 size = Vector2(97.5, 57)
@@ -12,8 +13,12 @@ script = ExtResource("1_od5km")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_3gqoq")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Disabled" type="Sprite2D" parent="."]
 position = Vector2(1, 13)
-texture = ExtResource("2_klegx")
+texture = ExtResource("2_7brbk")
+
+[node name="Enabled" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_xx78p")
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]
