@@ -294,8 +294,7 @@ scale = Vector2(100, 1)
 wait_time = 0.05
 autostart = true
 
-[node name="SpawnManager" parent="." node_paths=PackedStringArray("checkPoints") instance=ExtResource("8_8c41q")]
-checkPoints = [NodePath("CheckPoint0"), NodePath("CheckPoint1")]
+[node name="SpawnManager" parent="." instance=ExtResource("8_8c41q")]
 
 [node name="CheckPoint0" parent="SpawnManager" instance=ExtResource("10_64w2a")]
 position = Vector2(699, -568)
