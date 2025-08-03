@@ -776,7 +776,7 @@ animation = &"Idle"
 frame_progress = 0.993865
 
 [node name="TotalRunTimer" type="Timer" parent="."]
-wait_time = 120.0
+wait_time = 20.0
 one_shot = true
 autostart = true
 
@@ -949,9 +949,10 @@ TotalRunTimer = NodePath("../TotalRunTimer")
 TimerText = NodePath("../Hud/MarginContainer/HBoxContainer/Timer")
 dash_speed = 500.0
 
-[node name="GameEndPopup" type="CanvasLayer" parent="."]
+[node name="GameEndPopup" type="CanvasLayer" parent="." node_paths=PackedStringArray("pauser")]
 visible = false
 script = ExtResource("21_nh6lh")
+pauser = NodePath("../Pauser")
 
 [node name="GameEndPanel" type="PanelContainer" parent="GameEndPopup"]
 process_mode = 3

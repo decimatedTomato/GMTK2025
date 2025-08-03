@@ -106,6 +106,9 @@ func _physics_process(delta: float) -> void:
 	if dash_timer > 0:
 		dash_timer -= delta
 
+	if Input.is_action_just_pressed("kill yourself"):
+		die();
+
 	move_and_slide()
 
 func die():

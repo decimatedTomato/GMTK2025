@@ -11,6 +11,5 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_total_run_timer_timeout() -> void:
-	pauser._pause()
+	pauser.endGamePause();
 	show();
-	pass # Replace with function body.
