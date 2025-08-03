@@ -272,6 +272,7 @@ bus = &"SFX"
 
 [node name="DashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("4_70d11")
+volume_db = -7.973
 bus = &"SFX"
 
 [node name="LandSound" type="AudioStreamPlayer2D" parent="."]
@@ -295,9 +296,9 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_v6fml")
 
-[connection signal="deathSoundPlay" from="." to="AsyncSoundPlayer" method="_play_sound"]
 [node name="MortalityTimer" type="Timer" parent="."]
 
+[connection signal="deathSoundPlay" from="." to="AsyncSoundPlayer" method="_play_sound"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

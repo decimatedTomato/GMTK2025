@@ -121,7 +121,7 @@ func die():
 	is_invincible = true;
 	mortality_timer.start(INVINCIBILITY_SECONDS);
 
-	
+
 
 
 func _on_shadow_position_timer_timeout():
