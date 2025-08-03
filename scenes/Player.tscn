@@ -1,14 +1,14 @@
-[gd_scene load_steps=27 format=3 uid="uid://cvkdj4nek1ceh"]
+[gd_scene load_steps=35 format=3 uid="uid://cvkdj4nek1ceh"]
 
 [ext_resource type="Script" uid="uid://cxgmt11kicapo" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
 [ext_resource type="Texture2D" uid="uid://clgiknwatephu" path="res://assets/scientist_fall.png" id="2_70d11"]
 [ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_g2brh"]
-[ext_resource type="Texture2D" uid="uid://dk11dbpx81o4u" path="res://assets/scientist_jump.png" id="4_cw2d6"]
-[ext_resource type="Texture2D" uid="uid://d2chhy4kg0wj4" path="res://assets/scientist_rise.png" id="5_khinc"]
-[ext_resource type="Texture2D" uid="uid://df0wqrs8b7m5f" path="res://assets/scientist_run.png" id="6_bruh7"]
 [ext_resource type="AudioStream" uid="uid://bd3wm6ddy43gh" path="res://assets/sounds/sfx/jump.wav" id="3_3li8b"]
 [ext_resource type="AudioStream" uid="uid://daa7sntklnprv" path="res://assets/sounds/sfx/dash.wav" id="4_70d11"]
+[ext_resource type="Texture2D" uid="uid://dk11dbpx81o4u" path="res://assets/scientist_jump.png" id="4_cw2d6"]
 [ext_resource type="AudioStream" uid="uid://b8d42ktouuf8o" path="res://assets/sounds/sfx/player_died.wav" id="5_cw2d6"]
+[ext_resource type="Texture2D" uid="uid://d2chhy4kg0wj4" path="res://assets/scientist_rise.png" id="5_khinc"]
+[ext_resource type="Texture2D" uid="uid://df0wqrs8b7m5f" path="res://assets/scientist_run.png" id="6_bruh7"]
 [ext_resource type="AudioStream" uid="uid://x0h4bfbrnu1b" path="res://assets/sounds/sfx/landing.wav" id="6_khinc"]
 [ext_resource type="PackedScene" uid="uid://bpf1gddr6v7tf" path="res://scripts/deathAwaiter.tscn" id="7_cw2d6"]
 
@@ -163,6 +163,7 @@ animations = [{
 "name": &"Run",
 "speed": 12.0
 }]
+
 [sub_resource type="Gradient" id="Gradient_v6fml"]
 offsets = PackedFloat32Array(0, 0, 1)
 colors = PackedColorArray(0.305882, 0.231373, 0.137255, 1, 0.65098, 0.486275, 0.321569, 1, 0, 0, 0, 0)
@@ -184,7 +185,7 @@ initial_velocity_max = 40.0
 gravity = Vector3(0, 100, 0)
 damping_min = 10.0
 damping_max = 10.0
-scale_min = 0.6
+scale_max = 1.5
 color = Color(0.392157, 0.235294, 0.0588235, 1)
 color_ramp = SubResource("GradientTexture1D_3li8b")
 
@@ -250,7 +251,6 @@ bus = &"SFX"
 stream = ExtResource("5_cw2d6")
 bus = &"SFX"
 
-[connection signal="deathSoundPlay" from="." to="DeathAwaiter" method="_on_player_death"]
 [node name="GPUParticles2D" type="GPUParticles2D" parent="."]
 position = Vector2(0, 7)
 emitting = false
@@ -259,6 +259,7 @@ one_shot = true
 explosiveness = 1.0
 process_material = SubResource("ParticleProcessMaterial_v6fml")
 
+[connection signal="deathSoundPlay" from="." to="DeathAwaiter" method="_on_player_death"]
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]

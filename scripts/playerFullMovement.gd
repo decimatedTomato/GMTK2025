@@ -38,6 +38,7 @@ var slippedUp := false;
 var shadowData = []
 
 @onready var animation_sprite = $AnimatedSprite2D
+@onready var particle_emitter = $GPUParticles2D
 
 func _physics_process(delta: float) -> void:
 	# Add the gravity.
@@ -47,6 +48,7 @@ func _physics_process(delta: float) -> void:
 	if is_in_air and is_on_floor():
 		is_in_air = false;
 		land_sound.play();
+		particle_emitter.restart()
 	# Jumping
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or may_wall_jump()):
 		animation_sprite.play("Jump")
