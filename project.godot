@@ -15,12 +15,18 @@ run/main_scene="uid://sgaqo3xd50ep"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+AppConfig="*res://addons/maaacks_game_template/base/scenes/autoloads/app_config.tscn"
+SceneLoader="*res://addons/maaacks_game_template/base/scenes/autoloads/scene_loader.tscn"
+ProjectMusicController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_music_controller.tscn"
+ProjectUISoundController="*res://addons/maaacks_game_template/base/scenes/autoloads/project_ui_sound_controller.tscn"
+
 [display]
 
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/aspect="keep_width"
-window/stretch/scale=5.0
 
 [dotnet]
 
@@ -30,8 +36,13 @@ project/assembly_name="gmtk2025"
 
 version_control/autoload_on_startup=true
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/maaacks_game_template/plugin.cfg")
+
 [gui]
 
+theme/custom="uid://d1hgaet22gba2"
 theme/custom_font="uid://dhw51fuq2ii5b"
 
 [input]
@@ -76,6 +87,10 @@ dash={
 ]
 }
 
+[internationalization]
+
+locale/translations=PackedStringArray("res://addons/maaacks_game_template/base/translations/menus_translations.en.translation", "res://addons/maaacks_game_template/base/translations/menus_translations.fr.translation")
+
 [layer_names]
 
 2d_physics/layer_1="Player"
@@ -83,6 +98,12 @@ dash={
 2d_physics/layer_3="Terrain"
 2d_physics/layer_4="SlippyTerrain"
 2d_physics/layer_5="Victory"
+
+[maaacks_game_template]
+
+disable_install_audio_busses=true
+disable_update_check=false
+disable_install_wizard=true
 
 [rendering]
 

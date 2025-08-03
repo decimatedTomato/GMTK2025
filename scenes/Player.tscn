@@ -67,7 +67,7 @@ polygon = PackedVector2Array(17, 29, 19, 28, 19, 15, 8, 15, 8, 28, 10, 29)
 
 [node name="Camera2D" type="Camera2D" parent="."]
 process_mode = 3
-zoom = Vector2(0.8, 0.8)
+zoom = Vector2(3.5, 3.5)
 process_callback = 0
 position_smoothing_enabled = true
 position_smoothing_speed = 8.0

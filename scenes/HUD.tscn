@@ -1,17 +1,21 @@
-[gd_scene load_steps=3 format=3 uid="uid://chua67vx61402"]
+[gd_scene load_steps=5 format=3 uid="uid://chua67vx61402"]
 
+[ext_resource type="Script" uid="uid://c7jqs1khnj1mi" path="res://scripts/UIScripts/uiManager.gd" id="1_7hsmw"]
 [ext_resource type="Script" uid="uid://dykvgrlsoum77" path="res://scripts/UIScripts/scoreLabelScript.gd" id="1_qpvh6"]
 [ext_resource type="Script" uid="uid://c4eskhsufnrqe" path="res://scripts/UIScripts/timerLabelScript.gd" id="2_fls4u"]
+[ext_resource type="Script" uid="uid://bfj7lgdx5ijkq" path="res://scripts/UIScripts/pauseButton.gd" id="3_1etfg"]
 
 [node name="Hud" type="CanvasLayer"]
+script = ExtResource("1_7hsmw")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 anchors_preset = -1
-anchor_top = 0.07
+anchor_top = 0.0481481
 anchor_right = 1.0
-anchor_bottom = 0.18
-theme_override_constants/margin_left = 12
-theme_override_constants/margin_right = 12
+anchor_bottom = 0.193519
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_right = 100
+metadata/_edit_use_anchors_ = true
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
 layout_direction = 2
@@ -20,6 +24,8 @@ alignment = 1
 
 [node name="Score" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
 text = "12"
 vertical_alignment = 1
 script = ExtResource("1_qpvh6")
@@ -28,11 +34,20 @@ metadata/_edit_use_anchors_ = true
 [node name="Timer" type="Label" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 64
+text = "120"
 horizontal_alignment = 1
 vertical_alignment = 1
 script = ExtResource("2_fls4u")
 metadata/_edit_use_anchors_ = true
 
-[node name="Pause" type="MenuButton" parent="MarginContainer/HBoxContainer"]
+[node name="PauseButton" type="Button" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
-text = "| |"
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 64
+shortcut_feedback = false
+shortcut_in_tooltip = false
+text = " | | "
+icon_alignment = 1
+script = ExtResource("3_1etfg")

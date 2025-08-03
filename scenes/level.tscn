@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://sgaqo3xd50ep"]
+[gd_scene load_steps=16 format=4 uid="uid://sgaqo3xd50ep"]
 
 [ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/level.gd" id="1_2r41h"]
 [ext_resource type="Texture2D" uid="uid://bxio8fpvvjg3v" path="res://assets/background_temp.png" id="2_2r41h"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_t1rx8"]
 [ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scenes/pauser.gd" id="12_8iemx"]
+[ext_resource type="PackedScene" uid="uid://cnmu4k37qncn8" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.tscn" id="13_64w2a"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klq6b"]
 texture = ExtResource("6_2r41h")
@@ -346,17 +347,30 @@ one_shot = true
 autostart = true
 
 [node name="Hud" parent="." instance=ExtResource("11_t1rx8")]
-visible = false
 
 [node name="Timer" parent="Hud/MarginContainer/HBoxContainer" index="1" node_paths=PackedStringArray("timer")]
 timer = NodePath("../../../../TotalRunTimer")
 
+[node name="PauseButton" parent="Hud/MarginContainer/HBoxContainer" index="2"]
+script = null
+
 [node name="Pauser" type="Node2D" parent="."]
 script = ExtResource("12_8iemx")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("13_64w2a")]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
 
 [connection signal="restart" from="Player" to="." method="_on_restart"]
 [connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint0" to="SpawnManager" method="on_checkpoint_changed"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint1" to="SpawnManager" method="on_checkpoint_changed"]
+[connection signal="button_down" from="Hud/MarginContainer/HBoxContainer/PauseButton" to="Hud" method="_on_pause_button_button_down"]
 
 [editable path="Hud"]
