@@ -290,6 +290,7 @@ scale = Vector2(100, 1)
 [node name="ShadowPositionTimer" type="Timer" parent="."]
 wait_time = 0.05
 autostart = true
+ignore_time_scale = true
 
 [node name="SpawnManager" parent="." instance=ExtResource("7_vrtdi")]
 
@@ -537,6 +538,12 @@ dash_speed = 500.0
 [connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint0" to="SpawnManager" method="on_checkpoint_changed"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint1" to="SpawnManager" method="on_checkpoint_changed"]
+[connection signal="body_entered" from="SpawnManager/Safezone" to="Player" method="_on_entered_safe_zone"]
+[connection signal="body_exited" from="SpawnManager/Safezone" to="Player" method="_on_exit_safe_zone"]
+[connection signal="body_entered" from="SpawnManager/Safezone2" to="Player" method="_on_entered_safe_zone"]
+[connection signal="body_exited" from="SpawnManager/Safezone2" to="Player" method="_on_exit_safe_zone"]
+[connection signal="body_entered" from="SpawnManager/Safezone3" to="Player" method="_on_entered_safe_zone"]
+[connection signal="body_exited" from="SpawnManager/Safezone3" to="Player" method="_on_exit_safe_zone"]
 [connection signal="button_down" from="Hud/MarginContainer/HBoxContainer/PauseButton" to="Hud" method="_on_pause_button_button_down"]
 [connection signal="unpause" from="PauseLayer/PauseMenu" to="Hud" method="_on_pause_button_button_down"]
 [connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="PauseLayer/PauseMenu" method="_on_close_button_pressed"]
