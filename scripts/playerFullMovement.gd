@@ -23,7 +23,6 @@ var DEATH_PENALTY = 10
 
 @onready var jump_sound: AudioStreamPlayer2D = $JumpSound;
 @onready var dash_sound: AudioStreamPlayer2D = $DashSound;
-@onready var die_sound: AudioStreamPlayer2D = $DieSound;
 @onready var land_sound: AudioStreamPlayer2D = $LandSound;
 
 var is_in_air = false;
@@ -77,7 +76,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
 		animation_sprite.flip_h = direction < 0
-		animation_sprite.play("Walk")
+		animation_sprite.play("Run")
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed * deceleration)
 		animation_sprite.play("Idle")

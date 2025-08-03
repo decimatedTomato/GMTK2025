@@ -7,7 +7,7 @@ signal song2
 signal song3
 
 var songs = [song1, song2, song3];
-@onready var audioStreamPlayers = [$Song1, $Song2, $Song3];
+# @onready var audioStreamPlayers = [$Song1, $Song2, $Song3];
 @export var firstSong: int;
 @onready var currentSongSignal = firstSong;
 
