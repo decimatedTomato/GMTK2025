@@ -3,6 +3,7 @@ extends CharacterBody2D
 
 signal restart
 
+var in_safe_zone = false;
 var DEATH_PENALTY = 10
 @export var TotalRunTimer: Timer;
 
@@ -88,7 +89,8 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func die():
-	# hit.emit()
+	if (in_safe_zone):
+		return
 	restart.emit()
 	TotalRunTimer.wait_time -= DEATH_PENALTY
 
@@ -115,6 +117,14 @@ func _on_area_2d_body_entered(_body: Node2D) -> void:
 
 func _on_area_2d_body_exited(_body: Node2D) -> void:
 	slippedUp = false;
+
+func _on_entered_safe_zone(_body: Node2D) -> void:
+	print("entered safe zone")
+	in_safe_zone = true;
+
+func _on_exit_safe_zone(_body: Node2D) -> void:
+	print("exited safe zone")
+	in_safe_zone = false;
 
 
 #func _on_area_2d_body_shape_exited(body_rid: RID, body: Node2D, body_shape_index: int, local_shape_index: int) -> void:
