@@ -51,6 +51,7 @@ func _physics_process(delta: float) -> void:
 		particle_emitter.restart()
 	# Jumping
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or may_wall_jump()):
+		particle_emitter.restart()
 		animation_sprite.play("Jump")
 		animation_sprite.play("Rise")
 		is_in_air = true;
