@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://sdlbce3p0a00" path="res://scenes/check_point.tscn" id="10_64w2a"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_t1rx8"]
-[ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scenes/pauser.gd" id="12_8iemx"]
+[ext_resource type="Script" uid="uid://1hrs5b2vauqr" path="res://scenes/pauser.gd" id="12_8iemx"]
 [ext_resource type="Script" uid="uid://4ieefgkpqugj" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.gd" id="13_fpun6"]
 [ext_resource type="PackedScene" uid="uid://65shnbd3xtxu" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/mini_options_overlaid_menu.tscn" id="14_wc255"]
 

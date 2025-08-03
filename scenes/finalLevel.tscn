@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=4 uid="uid://bv0j2fc5lrfkq"]
+[gd_scene load_steps=16 format=4 uid="uid://bv0j2fc5lrfkq"]
 
 [ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/level.gd" id="1_4hn5q"]
 [ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/shadow.tscn" id="2_5mc5l"]
@@ -9,9 +9,10 @@
 [ext_resource type="PackedScene" uid="uid://b6kjojknc3e4o" path="res://scenes/spawn_manager.tscn" id="7_vrtdi"]
 [ext_resource type="PackedScene" uid="uid://sdlbce3p0a00" path="res://scenes/check_point.tscn" id="8_e17c3"]
 [ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/spawn_point.tscn" id="9_r17tj"]
+[ext_resource type="PackedScene" uid="uid://dptxvlk0unto7" path="res://safezone.tscn" id="10_5mc5l"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_nh6lh"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_4dsfd"]
-[ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scenes/pauser.gd" id="12_11ioe"]
+[ext_resource type="Script" uid="uid://1hrs5b2vauqr" path="res://scenes/pauser.gd" id="12_11ioe"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klq6b"]
 texture = ExtResource("4_q2ueq")
@@ -296,11 +297,11 @@ autostart = true
 position = Vector2(-877, -663)
 
 [node name="SpawnPoint" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_r17tj")]
-position = Vector2(9.00002, 114)
+position = Vector2(49, 107)
 scale = Vector2(10, 3.33333)
 
 [node name="SpawnPoint6" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_r17tj")]
-position = Vector2(48, 117)
+position = Vector2(-16, 5.99999)
 scale = Vector2(10, 3.33333)
 
 [node name="SpawnPoint7" parent="SpawnManager/CheckPoint0" instance=ExtResource("9_r17tj")]
@@ -351,6 +352,18 @@ scale = Vector2(10, 3.33333)
 position = Vector2(158, 85)
 scale = Vector2(10, 3.33333)
 
+[node name="Safezone" parent="SpawnManager" instance=ExtResource("10_5mc5l")]
+position = Vector2(-871, -584)
+scale = Vector2(4.44, 2.84)
+
+[node name="Safezone2" parent="SpawnManager" instance=ExtResource("10_5mc5l")]
+position = Vector2(582, -592)
+scale = Vector2(4.54232, 3.09868)
+
+[node name="Safezone3" parent="SpawnManager" instance=ExtResource("10_5mc5l")]
+position = Vector2(1077, 402)
+scale = Vector2(3.82231, 1.73868)
+
 [node name="endLocation" parent="." instance=ExtResource("10_nh6lh")]
 position = Vector2(3, -24)
 
@@ -371,5 +384,11 @@ script = ExtResource("12_11ioe")
 [connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint0" to="SpawnManager" method="on_checkpoint_changed"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint1" to="SpawnManager" method="on_checkpoint_changed"]
+[connection signal="body_entered" from="SpawnManager/Safezone" to="Player" method="_on_entered_safe_zone"]
+[connection signal="body_exited" from="SpawnManager/Safezone" to="Player" method="_on_exit_safe_zone"]
+[connection signal="body_entered" from="SpawnManager/Safezone2" to="Player" method="_on_entered_safe_zone"]
+[connection signal="body_exited" from="SpawnManager/Safezone2" to="Player" method="_on_exit_safe_zone"]
+[connection signal="body_entered" from="SpawnManager/Safezone3" to="Player" method="_on_entered_safe_zone"]
+[connection signal="body_exited" from="SpawnManager/Safezone3" to="Player" method="_on_exit_safe_zone"]
 
 [editable path="Hud"]
