@@ -17,7 +17,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 		pass
 
-
 func _on_pause_button_button_down() -> void:
 	if not pauseMenu.is_visible():
 		pauser.uiPause()

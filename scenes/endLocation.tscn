@@ -1,8 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://76m8ch5ccxjm"]
 
 [ext_resource type="Script" uid="uid://dhkmgjxjx6fy7" path="res://scripts/end_location.gd" id="1_1sf0g"]
-[ext_resource type="Texture2D" uid="uid://c078vjxap4eqk" path="res://art/Temporary/enemyFlyingAlt_1.png" id="1_xjvro"]
-[ext_resource type="Texture2D" uid="uid://44t6pw60k8c7" path="res://art/Temporary/enemyFlyingAlt_2.png" id="2_1sf0g"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_0kxvy"]
 animations = [{
