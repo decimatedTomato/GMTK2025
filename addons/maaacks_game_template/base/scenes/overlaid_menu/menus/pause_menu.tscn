@@ -22,6 +22,9 @@ text = "Paused"
 theme_override_constants/margin_top = 16
 theme_override_constants/margin_bottom = 16
 
+[node name="MenuButtons" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin" index="0"]
+script = null
+
 [node name="CloseButton" parent="MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons" index="0"]
 text = "Resume"
 

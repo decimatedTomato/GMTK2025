@@ -2,6 +2,8 @@
 class_name OverlaidMenu
 extends Control
 
+signal unpause
+
 @export var pauses_game : bool = false :
 	set(value):
 		pauses_game = value
@@ -26,7 +28,7 @@ func close() -> void:
 	queue_free()
 
 func _handle_cancel_input() -> void:
-	close()
+	unpause.emit()
 
 func _unhandled_input(event : InputEvent) -> void:
 	if event.is_action_pressed("ui_cancel"):
@@ -34,7 +36,7 @@ func _unhandled_input(event : InputEvent) -> void:
 		get_viewport().set_input_as_handled()
 
 func _on_close_button_pressed() -> void:
-	close()
+	unpause.emit()
 
 func _enter_tree() -> void:
 	_scene_tree = get_tree()

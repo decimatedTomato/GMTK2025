@@ -19,9 +19,9 @@ func _process(delta: float) -> void:
 
 
 func _on_pause_button_button_down() -> void:
-	if pauseMenu.hidden:
-		pauser._pause()
+	if not pauseMenu.is_visible():
+		pauser.uiPause()
 		pauseMenu.show()
 	else:
-		pauser._unpause()
+		pauser.uiUnpause()
 		pauseMenu.hide()

@@ -15,3 +15,11 @@ func _unpause():
 	
 func _pause():
 	get_tree().paused = true
+	
+func uiPause():
+	isUIPaused = true
+	_pause()
+	
+func uiUnpause():
+	isUIPaused = false
+	_unpause()
