@@ -2,6 +2,7 @@ class_name Player
 extends CharacterBody2D
 
 signal restart
+signal deathSoundPlay
 
 var in_safe_zone = false;
 var DEATH_PENALTY = 10
@@ -20,6 +21,13 @@ var DEATH_PENALTY = 10
 @export var dash_curve : Curve
 @export var dash_cooldown = 1.0
 
+@onready var jump_sound: AudioStreamPlayer2D = $JumpSound;
+@onready var dash_sound: AudioStreamPlayer2D = $DashSound;
+@onready var die_sound: AudioStreamPlayer2D = $DieSound;
+@onready var land_sound: AudioStreamPlayer2D = $LandSound;
+
+var is_in_air = false;
+
 var is_dashing = false
 var dash_start_pos = 0
 var dash_dir = 0
@@ -36,15 +44,20 @@ func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity += get_gravity() * delta
 
+	if is_in_air and is_on_floor():
+		is_in_air = false;
+		land_sound.play();
 	# Jumping
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or may_wall_jump()):
 		animation_sprite.play("Jump")
 		animation_sprite.play("Rise")
+		is_in_air = true;
+		jump_sound.play()
 		velocity.y = jump_velocity
 
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= decelerate_on_jump_release
-	
+
 	if velocity.y < 0:
 		animation_sprite.play("Fall")
 
@@ -69,6 +82,7 @@ func _physics_process(delta: float) -> void:
 	# Check for dashing
 	if Input.is_action_just_pressed("dash") and direction and not is_dashing and dash_timer <= 0:
 		is_dashing = true
+		dash_sound.play();
 		dash_start_pos = position.x
 		dash_dir = direction
 		dash_timer = dash_cooldown
@@ -91,6 +105,8 @@ func _physics_process(delta: float) -> void:
 func die():
 	if (in_safe_zone):
 		return
+
+	deathSoundPlay.emit()
 	restart.emit()
 	TotalRunTimer.wait_time -= DEATH_PENALTY
 

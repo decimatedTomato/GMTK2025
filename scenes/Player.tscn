@@ -1,11 +1,23 @@
+<<<<<<< HEAD
 [gd_scene load_steps=27 format=3 uid="uid://cvkdj4nek1ceh"]
+=======
+[gd_scene load_steps=16 format=3 uid="uid://cvkdj4nek1ceh"]
+>>>>>>> 671399d (implemented some sounds)
 
 [ext_resource type="Script" uid="uid://cxgmt11kicapo" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
 [ext_resource type="Texture2D" uid="uid://clgiknwatephu" path="res://assets/scientist_fall.png" id="2_70d11"]
 [ext_resource type="Texture2D" uid="uid://dht0y4klg3dsl" path="res://assets/scientist_idle.png" id="2_g2brh"]
+<<<<<<< HEAD
 [ext_resource type="Texture2D" uid="uid://dk11dbpx81o4u" path="res://assets/scientist_jump.png" id="4_cw2d6"]
 [ext_resource type="Texture2D" uid="uid://d2chhy4kg0wj4" path="res://assets/scientist_rise.png" id="5_khinc"]
 [ext_resource type="Texture2D" uid="uid://df0wqrs8b7m5f" path="res://assets/scientist_run.png" id="6_bruh7"]
+=======
+[ext_resource type="AudioStream" uid="uid://bd3wm6ddy43gh" path="res://assets/sounds/sfx/jump.wav" id="3_3li8b"]
+[ext_resource type="AudioStream" uid="uid://daa7sntklnprv" path="res://assets/sounds/sfx/dash.wav" id="4_70d11"]
+[ext_resource type="AudioStream" uid="uid://b8d42ktouuf8o" path="res://assets/sounds/sfx/player_died.wav" id="5_cw2d6"]
+[ext_resource type="AudioStream" uid="uid://x0h4bfbrnu1b" path="res://assets/sounds/sfx/landing.wav" id="6_khinc"]
+[ext_resource type="PackedScene" uid="uid://bpf1gddr6v7tf" path="res://scripts/deathAwaiter.tscn" id="7_cw2d6"]
+>>>>>>> 671399d (implemented some sounds)
 
 [sub_resource type="Curve" id="Curve_ws0vm"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.372093, 1), 0.0, 0.0, 0, 0, Vector2(0.99999, 0.682718), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
@@ -195,6 +207,7 @@ script = SubResource("GDScript_v6fml")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CapsuleShape2D_v6fml")
 
+<<<<<<< HEAD
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
@@ -202,6 +215,28 @@ sprite_frames = SubResource("SpriteFrames_yi2kj")
 animation = &"Fall"
 frame_progress = 0.874974
 
+=======
+[node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_3li8b")
+bus = &"SFX"
+
+[node name="DashSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_70d11")
+bus = &"SFX"
+
+[node name="LandSound" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_khinc")
+volume_db = -10.909
+bus = &"SFX"
+
+[node name="DeathAwaiter" parent="." instance=ExtResource("7_cw2d6")]
+
+[node name="DieSound" type="AudioStreamPlayer2D" parent="DeathAwaiter"]
+stream = ExtResource("5_cw2d6")
+bus = &"SFX"
+
+[connection signal="deathSoundPlay" from="." to="DeathAwaiter" method="_on_player_death"]
+>>>>>>> 671399d (implemented some sounds)
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
