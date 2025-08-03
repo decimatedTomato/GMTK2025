@@ -163,6 +163,30 @@ animations = [{
 "name": &"Run",
 "speed": 12.0
 }]
+[sub_resource type="Gradient" id="Gradient_v6fml"]
+offsets = PackedFloat32Array(0, 0, 1)
+colors = PackedColorArray(0.305882, 0.231373, 0.137255, 1, 0.65098, 0.486275, 0.321569, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_3li8b"]
+gradient = SubResource("Gradient_v6fml")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v6fml"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 3.0
+angle_min = 1.07288e-05
+angle_max = 1.07288e-05
+direction = Vector3(0, -1, 0)
+spread = 80.0
+flatness = 1.0
+initial_velocity_min = 30.0
+initial_velocity_max = 40.0
+gravity = Vector3(0, 100, 0)
+damping_min = 10.0
+damping_max = 10.0
+scale_min = 0.6
+color = Color(0.392157, 0.235294, 0.0588235, 1)
+color_ramp = SubResource("GradientTexture1D_3li8b")
 
 [node name="Player" type="CharacterBody2D"]
 collision_mask = 30
@@ -227,6 +251,14 @@ stream = ExtResource("5_cw2d6")
 bus = &"SFX"
 
 [connection signal="deathSoundPlay" from="." to="DeathAwaiter" method="_on_player_death"]
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+position = Vector2(0, 7)
+emitting = false
+lifetime = 0.3
+one_shot = true
+explosiveness = 1.0
+process_material = SubResource("ParticleProcessMaterial_v6fml")
+
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2D" to="." method="_on_area_2d_area_exited"]
 [connection signal="area_shape_entered" from="Area2D" to="." method="_on_area_2d_area_shape_entered"]
