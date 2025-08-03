@@ -29,6 +29,13 @@ func _on_restart():
 	$Hud/MarginContainer/HBoxContainer/Score.text = str(score)
 	$Player.show()
 	$Pauser._pause()
+	
+func _on_death():
+	$Player._reset()
+	$Player.position = $SpawnManager._get_next_spawn_point()
+	get_tree().call_group("shadows", "_reset")
+	$Player.show()
+	$Pauser._pause()
 
 func _create_shadow_with_path():
 	$ShadowPositionTimer.stop()

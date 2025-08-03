@@ -2,11 +2,13 @@ class_name Player
 extends CharacterBody2D
 
 signal restart
+signal death
 signal deathSoundPlay
 
 var in_safe_zone = false;
 var DEATH_PENALTY = 10
 @export var TotalRunTimer: Timer;
+@export var TimerText: Label
 
 @export var walk_speed = 600.0
 @export var run_speed = 800.0
@@ -109,8 +111,9 @@ func die():
 		return
 
 	deathSoundPlay.emit()
-	restart.emit()
-	TotalRunTimer.wait_time -= DEATH_PENALTY
+	death.emit()
+	TotalRunTimer.start(TotalRunTimer.get_time_left() - DEATH_PENALTY)
+	TimerText.setTime()
 
 
 func _on_shadow_position_timer_timeout():

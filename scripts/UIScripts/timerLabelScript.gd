@@ -7,14 +7,14 @@ var full_screen = 0
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
-	self.text = get_printable_time()
+	setTime()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	get_tree().get_root().size_changed.connect(window_resized)
 	full_screen = DisplayServer.window_get_mode()
 	call_deferred("set_children", self.get_children())
-	self.text = get_printable_time()
+	setTime()
 
 func get_printable_time():
 	return str(int(timer.get_time_left()))
@@ -93,3 +93,7 @@ func save_font_size(text_element, parent):
 
 		(text_element).set_meta("fsize", font_override_default)
 		(text_element).set_meta("pwidth", parent_current_width)
+		
+func setTime():
+	self.text = get_printable_time()
+	

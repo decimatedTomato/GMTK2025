@@ -523,11 +523,12 @@ stream = ExtResource("16_pr0v2")
 volume_db = 8.914
 bus = &"Music"
 
-[node name="Player" parent="." node_paths=PackedStringArray("TotalRunTimer") instance=ExtResource("5_pr0v2")]
+[node name="Player" parent="." node_paths=PackedStringArray("TotalRunTimer", "TimerText") instance=ExtResource("5_pr0v2")]
 position = Vector2(733, -439)
 collision_layer = 7
 collision_mask = 7
 TotalRunTimer = NodePath("../TotalRunTimer")
+TimerText = NodePath("../Hud/MarginContainer/HBoxContainer/Timer")
 dash_speed = 500.0
 
 [node name="GameEndPopup" type="CanvasLayer" parent="."]
@@ -604,6 +605,7 @@ text = "Restart"
 [connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmRestart" to="PauseLayer/PauseMenu" method="_on_confirm_restart_confirmed"]
 [connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmMainMenu" to="PauseLayer/PauseMenu" method="_on_confirm_main_menu_confirmed"]
 [connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmExit" to="PauseLayer/PauseMenu" method="_on_confirm_exit_confirmed"]
+[connection signal="death" from="Player" to="." method="_on_death"]
 [connection signal="restart" from="Player" to="." method="_on_restart"]
 [connection signal="pressed" from="GameEndPopup/GameEndPanel/MarginContainer/BoxContainer/RestartButton" to="PauseLayer/PauseMenu" method="_on_restart_button_pressed"]
 
