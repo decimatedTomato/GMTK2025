@@ -1,4 +1,4 @@
-class_name MainMenu
+class_name MainMenuNode
 extends Control
 
 signal sub_menu_opened
