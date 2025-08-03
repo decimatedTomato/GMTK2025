@@ -122,8 +122,6 @@ func die():
 	mortality_timer.start(INVINCIBILITY_SECONDS);
 
 
-
-
 func _on_shadow_position_timer_timeout():
 	shadowData.append({"position": position, "flip_h": animation_sprite.flip_h});
 

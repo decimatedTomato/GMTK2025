@@ -1,5 +1,7 @@
 extends Node2D
 
+class_name Pauser
+
 var isUIPaused = false
 
 func _ready():
