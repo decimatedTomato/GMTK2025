@@ -4,7 +4,6 @@ extends CharacterBody2D
 signal restart
 
 var DEATH_PENALTY = 10
-@export var tileMapLayer: TileMapLayer;
 @export var TotalRunTimer: Timer;
 
 @export var walk_speed = 600.0
