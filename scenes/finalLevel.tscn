@@ -13,7 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_nh6lh"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_4dsfd"]
 [ext_resource type="Script" uid="uid://4ieefgkpqugj" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.gd" id="11_5mc5l"]
-[ext_resource type="Script" path="res://scripts/pauser.gd" id="11_48g0q"]
+[ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scripts/pauser.gd" id="11_48g0q"]
 [ext_resource type="PackedScene" uid="uid://65shnbd3xtxu" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/mini_options_overlaid_menu.tscn" id="12_48g0q"]
 [ext_resource type="PackedScene" uid="uid://bpf1gddr6v7tf" path="res://scripts/asyncSoundPlayer.tscn" id="16_e17c3"]
 [ext_resource type="AudioStream" uid="uid://cga4urnydk378" path="res://assets/sounds/music/bgMusic1.mp3" id="16_pr0v2"]
@@ -532,6 +532,58 @@ collision_mask = 7
 TotalRunTimer = NodePath("../TotalRunTimer")
 dash_speed = 500.0
 
+[node name="GameEndPopup" type="CanvasLayer" parent="."]
+
+[node name="GameEndPanel" type="PanelContainer" parent="GameEndPopup"]
+process_mode = 3
+visible = false
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="GameEndPopup/GameEndPanel"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 16
+
+[node name="BoxContainer" type="BoxContainer" parent="GameEndPopup/GameEndPanel/MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="TitleMargin" type="MarginContainer" parent="GameEndPopup/GameEndPanel/MarginContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="GameEndPopup/GameEndPanel/MarginContainer/BoxContainer/TitleMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Time is up!"
+horizontal_alignment = 1
+
+[node name="ScoreLabelMargin" type="MarginContainer" parent="GameEndPopup/GameEndPanel/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="Label" type="Label" parent="GameEndPopup/GameEndPanel/MarginContainer/BoxContainer/ScoreLabelMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 50
+text = "Score: 5"
+
+[node name="RestartButton" type="Button" parent="GameEndPopup/GameEndPanel/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 40
+text = "Restart"
+
 [connection signal="song1" from="." to="AsyncSoundPlayer1" method="_play_sound"]
 [connection signal="song2" from="." to="AsyncSoundPlayer2" method="_play_sound"]
 [connection signal="song3" from="." to="AsyncSoundPlayer3" method="_play_sound"]
@@ -544,6 +596,7 @@ dash_speed = 500.0
 [connection signal="body_exited" from="SpawnManager/Safezone2" to="Player" method="_on_exit_safe_zone"]
 [connection signal="body_entered" from="SpawnManager/Safezone3" to="Player" method="_on_entered_safe_zone"]
 [connection signal="body_exited" from="SpawnManager/Safezone3" to="Player" method="_on_exit_safe_zone"]
+[connection signal="timeout" from="TotalRunTimer" to="." method="_on_total_run_timer_timeout"]
 [connection signal="button_down" from="Hud/MarginContainer/HBoxContainer/PauseButton" to="Hud" method="_on_pause_button_button_down"]
 [connection signal="unpause" from="PauseLayer/PauseMenu" to="Hud" method="_on_pause_button_button_down"]
 [connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="PauseLayer/PauseMenu" method="_on_close_button_pressed"]
@@ -554,5 +607,6 @@ dash_speed = 500.0
 [connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmMainMenu" to="PauseLayer/PauseMenu" method="_on_confirm_main_menu_confirmed"]
 [connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmExit" to="PauseLayer/PauseMenu" method="_on_confirm_exit_confirmed"]
 [connection signal="restart" from="Player" to="." method="_on_restart"]
+[connection signal="pressed" from="GameEndPopup/GameEndPanel/MarginContainer/BoxContainer/RestartButton" to="PauseLayer/PauseMenu" method="_on_restart_button_pressed"]
 
 [editable path="Hud"]
