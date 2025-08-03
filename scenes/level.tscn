@@ -11,7 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://sdlbce3p0a00" path="res://scenes/check_point.tscn" id="10_64w2a"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_olg7q"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_t1rx8"]
-[ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scenes/pauser.gd" id="12_8iemx"]
+[ext_resource type="Script" path="res://scripts/pauser.gd" id="12_fpun6"]
 [ext_resource type="Script" uid="uid://4ieefgkpqugj" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.gd" id="13_fpun6"]
 [ext_resource type="PackedScene" uid="uid://65shnbd3xtxu" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/mini_options_overlaid_menu.tscn" id="14_wc255"]
 
@@ -355,7 +355,7 @@ timer = NodePath("../../../../TotalRunTimer")
 script = null
 
 [node name="Pauser" type="Node2D" parent="."]
-script = ExtResource("12_8iemx")
+script = ExtResource("12_fpun6")
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
 
@@ -453,11 +453,6 @@ text = "Resume"
 layout_mode = 2
 text = "Restart"
 
-[node name="OptionsButton" type="Button" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
-unique_name_in_owner = true
-layout_mode = 2
-text = "Options"
-
 [node name="MainMenuButton" type="Button" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
 unique_name_in_owner = true
 layout_mode = 2
@@ -491,7 +486,6 @@ dialog_text = "Quit the game?"
 [connection signal="unpause" from="PauseLayer/PauseMenu" to="Hud" method="_on_pause_button_button_down"]
 [connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="PauseLayer/PauseMenu" method="_on_close_button_pressed"]
 [connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="PauseLayer/PauseMenu" method="_on_restart_button_pressed"]
-[connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/OptionsButton" to="PauseLayer/PauseMenu" method="_on_options_button_pressed"]
 [connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="PauseLayer/PauseMenu" method="_on_main_menu_button_pressed"]
 [connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/ExitButton" to="PauseLayer/PauseMenu" method="_on_exit_button_pressed"]
 [connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmRestart" to="PauseLayer/PauseMenu" method="_on_confirm_restart_confirmed"]
