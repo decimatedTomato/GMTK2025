@@ -1,6 +1,6 @@
 extends Node2D
 
-@onready var die_sound: AudioStreamPlayer2D = $DieSound;
+@export var sound: AudioStreamPlayer2D;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -11,6 +11,6 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func _on_player_death() -> void:
+func _play_sound() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
-	die_sound.play()
+	sound.play()

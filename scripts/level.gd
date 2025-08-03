@@ -2,9 +2,20 @@ extends Node
 
 @export var shadow_scene: PackedScene
 
+signal song1
+signal song2
+signal song3
+
+var songs = [song1, song2, song3];
+@onready var audioStreamPlayers = [$Song1, $Song2, $Song3];
+@export var firstSong: int;
+@onready var currentSongSignal = firstSong;
+
 var score = 0
 
 func _ready():
+	songs[currentSongSignal].emit();
+
 	$Hud/MarginContainer/HBoxContainer/Score.text = str(score)
 	$Player.position = $SpawnManager._get_next_spawn_point()
 	$Pauser._pause()
