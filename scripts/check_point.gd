@@ -11,8 +11,7 @@ var spawnPoints: Array
 @onready var disabled_sprite := $Disabled;
 
 func _ready() -> void:
-	
-	spawnPoints = find_children("*", "SpawnPoint", false, true) as Array[Node2D]
+	spawnPoints = find_children("*", "SpawnPoint", false) as Array[SpawnPoint]
 
 func _on_body_entered(_body: Node2D) -> void:
 	checkpoint_reached.emit(checkpoint_id);

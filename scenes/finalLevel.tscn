@@ -549,7 +549,6 @@ autostart = true
 ignore_time_scale = true
 
 [node name="SpawnManager" parent="." instance=ExtResource("7_vrtdi")]
-INITIAL_CHECKPOINT = 2
 
 [node name="Safezone" parent="SpawnManager" instance=ExtResource("10_5mc5l")]
 visible = false
