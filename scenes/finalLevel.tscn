@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=4 uid="uid://bv0j2fc5lrfkq"]
+[gd_scene load_steps=17 format=4 uid="uid://bv0j2fc5lrfkq"]
 
 [ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/level.gd" id="1_4hn5q"]
 [ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/shadow.tscn" id="2_5mc5l"]
@@ -12,7 +12,9 @@
 [ext_resource type="PackedScene" uid="uid://dptxvlk0unto7" path="res://safezone.tscn" id="10_5mc5l"]
 [ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_nh6lh"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_4dsfd"]
-[ext_resource type="Script" uid="uid://1hrs5b2vauqr" path="res://scenes/pauser.gd" id="12_11ioe"]
+[ext_resource type="Script" uid="uid://4ieefgkpqugj" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.gd" id="11_5mc5l"]
+[ext_resource type="Script" path="res://scripts/pauser.gd" id="11_48g0q"]
+[ext_resource type="PackedScene" uid="uid://65shnbd3xtxu" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/mini_options_overlaid_menu.tscn" id="12_48g0q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_klq6b"]
 texture = ExtResource("4_q2ueq")
@@ -377,18 +379,145 @@ autostart = true
 [node name="Timer" parent="Hud/MarginContainer/HBoxContainer" index="1" node_paths=PackedStringArray("timer")]
 timer = NodePath("../../../../TotalRunTimer")
 
+[node name="PauseButton" parent="Hud/MarginContainer/HBoxContainer" index="2"]
+script = null
+
 [node name="Pauser" type="Node2D" parent="."]
-script = ExtResource("12_11ioe")
+script = ExtResource("11_48g0q")
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" type="Control" parent="PauseLayer"]
+process_mode = 3
+visible = false
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("11_5mc5l")
+options_packed_scene = ExtResource("12_48g0q")
+main_menu_scene = "uid://c63y6b25bs4bk"
+pauses_game = true
+
+[node name="BackgroundColor" type="ColorRect" parent="PauseLayer/PauseMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0, 0, 0, 0.12549)
+
+[node name="MenuPanelContainer" type="PanelContainer" parent="PauseLayer/PauseMenu"]
+unique_name_in_owner = true
+process_mode = 3
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="PauseLayer/PauseMenu/MenuPanelContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 64
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 64
+theme_override_constants/margin_bottom = 16
+
+[node name="BoxContainer" type="BoxContainer" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer"]
+layout_mode = 2
+vertical = true
+
+[node name="TitleMargin" type="MarginContainer" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+
+[node name="TitleLabel" type="Label" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/TitleMargin"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+text = "Paused"
+horizontal_alignment = 1
+
+[node name="DescriptionMargin" type="MarginContainer" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DescriptionLabel" type="RichTextLabel" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/DescriptionMargin"]
+layout_mode = 2
+bbcode_enabled = true
+
+[node name="MenuButtonsMargin" type="MarginContainer" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="MenuButtons" type="BoxContainer" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+theme_override_constants/separation = 16
+alignment = 1
+vertical = true
+
+[node name="CloseButton" type="Button" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+layout_mode = 2
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+layout_mode = 2
+text = "Restart"
+
+[node name="MainMenuButton" type="Button" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Main Menu"
+
+[node name="ExitButton" type="Button" parent="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit Game"
+
+[node name="ConfirmRestart" type="ConfirmationDialog" parent="PauseLayer/PauseMenu"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+dialog_text = "Restart the game?"
+
+[node name="ConfirmMainMenu" type="ConfirmationDialog" parent="PauseLayer/PauseMenu"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+dialog_text = "Go back to main menu?"
+
+[node name="ConfirmExit" type="ConfirmationDialog" parent="PauseLayer/PauseMenu"]
+unique_name_in_owner = true
+auto_translate_mode = 1
+dialog_text = "Quit the game?"
 
 [connection signal="restart" from="Player" to="." method="_on_restart"]
 [connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint0" to="SpawnManager" method="on_checkpoint_changed"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint1" to="SpawnManager" method="on_checkpoint_changed"]
-[connection signal="body_entered" from="SpawnManager/Safezone" to="Player" method="_on_entered_safe_zone"]
-[connection signal="body_exited" from="SpawnManager/Safezone" to="Player" method="_on_exit_safe_zone"]
-[connection signal="body_entered" from="SpawnManager/Safezone2" to="Player" method="_on_entered_safe_zone"]
-[connection signal="body_exited" from="SpawnManager/Safezone2" to="Player" method="_on_exit_safe_zone"]
-[connection signal="body_entered" from="SpawnManager/Safezone3" to="Player" method="_on_entered_safe_zone"]
-[connection signal="body_exited" from="SpawnManager/Safezone3" to="Player" method="_on_exit_safe_zone"]
+[connection signal="button_down" from="Hud/MarginContainer/HBoxContainer/PauseButton" to="Hud" method="_on_pause_button_button_down"]
+[connection signal="unpause" from="PauseLayer/PauseMenu" to="Hud" method="_on_pause_button_button_down"]
+[connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="PauseLayer/PauseMenu" method="_on_close_button_pressed"]
+[connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/RestartButton" to="PauseLayer/PauseMenu" method="_on_restart_button_pressed"]
+[connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/MainMenuButton" to="PauseLayer/PauseMenu" method="_on_main_menu_button_pressed"]
+[connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/ExitButton" to="PauseLayer/PauseMenu" method="_on_exit_button_pressed"]
+[connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmRestart" to="PauseLayer/PauseMenu" method="_on_confirm_restart_confirmed"]
+[connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmMainMenu" to="PauseLayer/PauseMenu" method="_on_confirm_main_menu_confirmed"]
+[connection signal="confirmed" from="PauseLayer/PauseMenu/ConfirmExit" to="PauseLayer/PauseMenu" method="_on_confirm_exit_confirmed"]
 
 [editable path="Hud"]

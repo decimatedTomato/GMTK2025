@@ -38,14 +38,20 @@ func _physics_process(delta: float) -> void:
 
 	# Jumping
 	if Input.is_action_just_pressed("jump") and (is_on_floor() or may_wall_jump()):
+		animation_sprite.play("Jump")
+		animation_sprite.play("Rise")
 		velocity.y = jump_velocity
 
 	if Input.is_action_just_released("jump") and velocity.y < 0:
 		velocity.y *= decelerate_on_jump_release
+	
+	if velocity.y < 0:
+		animation_sprite.play("Fall")
 
 	# Running
 	var speed
 	if Input.is_action_pressed("run"):
+		animation_sprite.play("Run")
 		speed = run_speed
 	else:
 		speed = walk_speed
@@ -55,7 +61,7 @@ func _physics_process(delta: float) -> void:
 	if direction:
 		velocity.x = move_toward(velocity.x, direction * speed, speed * acceleration)
 		animation_sprite.flip_h = direction < 0
-		#animation_sprite.play("Walk")
+		animation_sprite.play("Walk")
 	else:
 		velocity.x = move_toward(velocity.x, 0, walk_speed * deceleration)
 		animation_sprite.play("Idle")
