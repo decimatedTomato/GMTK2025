@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=4 uid="uid://bv0j2fc5lrfkq"]
+[gd_scene load_steps=29 format=4 uid="uid://bv0j2fc5lrfkq"]
 
 [ext_resource type="Script" uid="uid://cr0h06xsruoou" path="res://scripts/level.gd" id="1_4hn5q"]
 [ext_resource type="PackedScene" uid="uid://dma4dkw1hqb5l" path="res://scenes/shadow.tscn" id="2_5mc5l"]
@@ -10,10 +10,11 @@
 [ext_resource type="PackedScene" uid="uid://sdlbce3p0a00" path="res://scenes/check_point.tscn" id="8_e17c3"]
 [ext_resource type="PackedScene" uid="uid://bxl32fykpy3ii" path="res://scenes/spawn_point.tscn" id="9_r17tj"]
 [ext_resource type="PackedScene" uid="uid://dptxvlk0unto7" path="res://safezone.tscn" id="10_5mc5l"]
-[ext_resource type="PackedScene" uid="uid://76m8ch5ccxjm" path="res://scenes/endLocation.tscn" id="10_nh6lh"]
+[ext_resource type="Script" uid="uid://dhkmgjxjx6fy7" path="res://scripts/end_location.gd" id="10_r17tj"]
 [ext_resource type="PackedScene" uid="uid://chua67vx61402" path="res://scenes/HUD.tscn" id="11_4dsfd"]
 [ext_resource type="Script" uid="uid://4ieefgkpqugj" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/pause_menu.gd" id="11_5mc5l"]
 [ext_resource type="Script" uid="uid://c0hf1rb36ao3s" path="res://scripts/pauser.gd" id="11_48g0q"]
+[ext_resource type="Texture2D" uid="uid://cmb1hh0y38rxn" path="res://assets/wife.png" id="11_r17tj"]
 [ext_resource type="PackedScene" uid="uid://65shnbd3xtxu" path="res://addons/maaacks_game_template/examples/scenes/overlaid_menus/mini_options_overlaid_menu.tscn" id="12_48g0q"]
 [ext_resource type="PackedScene" uid="uid://bpf1gddr6v7tf" path="res://scripts/asyncSoundPlayer.tscn" id="16_e17c3"]
 [ext_resource type="AudioStream" uid="uid://cga4urnydk378" path="res://assets/sounds/music/bgMusic1.mp3" id="16_pr0v2"]
@@ -265,6 +266,46 @@ terrain_set_0/terrain_1/name = "Slippy"
 terrain_set_0/terrain_1/color = Color(0.631706, 0.225895, 0.731234, 1)
 sources/0 = SubResource("TileSetAtlasSource_klq6b")
 
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xjvro"]
+radius = 47.0
+height = 126.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nh6lh"]
+atlas = ExtResource("11_r17tj")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4dsfd"]
+atlas = ExtResource("11_r17tj")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_11ioe"]
+atlas = ExtResource("11_r17tj")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b64c0"]
+atlas = ExtResource("11_r17tj")
+region = Rect2(96, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_15mg2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nh6lh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4dsfd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_11ioe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b64c0")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 4.0
+}]
+
 [node name="Level" type="Node2D"]
 script = ExtResource("1_4hn5q")
 shadow_scene = ExtResource("2_5mc5l")
@@ -365,8 +406,20 @@ scale = Vector2(4.54232, 3.09868)
 position = Vector2(1077, 402)
 scale = Vector2(3.82231, 1.73868)
 
-[node name="endLocation" parent="." instance=ExtResource("10_nh6lh")]
+[node name="endLocation" type="Area2D" parent="."]
 position = Vector2(3, -24)
+collision_layer = 16
+script = ExtResource("10_r17tj")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="endLocation"]
+rotation = 1.5708
+scale = Vector2(0.25, 0.25)
+shape = SubResource("CapsuleShape2D_xjvro")
+
+[node name="AnimatedSpriteWife" type="AnimatedSprite2D" parent="endLocation"]
+sprite_frames = SubResource("SpriteFrames_15mg2")
+animation = &"Idle"
+frame_progress = 0.993865
 
 [node name="TotalRunTimer" type="Timer" parent="."]
 wait_time = 120.0
@@ -382,6 +435,7 @@ timer = NodePath("../../../../TotalRunTimer")
 script = null
 
 [node name="Pauser" type="Node2D" parent="."]
+visible = false
 script = ExtResource("11_48g0q")
 
 [node name="PauseLayer" type="CanvasLayer" parent="."]
@@ -399,7 +453,7 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("11_5mc5l")
 options_packed_scene = ExtResource("12_48g0q")
-main_menu_scene = "uid://c63y6b25bs4bk"
+main_menu_scene = "res://scenes/main_menu.tscn"
 pauses_game = true
 
 [node name="BackgroundColor" type="ColorRect" parent="PauseLayer/PauseMenu"]
@@ -590,13 +644,7 @@ text = "Restart"
 [connection signal="timeout" from="ShadowPositionTimer" to="Player" method="_on_shadow_position_timer_timeout"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint0" to="SpawnManager" method="on_checkpoint_changed"]
 [connection signal="checkpoint_reached" from="SpawnManager/CheckPoint1" to="SpawnManager" method="on_checkpoint_changed"]
-[connection signal="body_entered" from="SpawnManager/Safezone" to="Player" method="_on_entered_safe_zone"]
-[connection signal="body_exited" from="SpawnManager/Safezone" to="Player" method="_on_exit_safe_zone"]
-[connection signal="body_entered" from="SpawnManager/Safezone2" to="Player" method="_on_entered_safe_zone"]
-[connection signal="body_exited" from="SpawnManager/Safezone2" to="Player" method="_on_exit_safe_zone"]
-[connection signal="body_entered" from="SpawnManager/Safezone3" to="Player" method="_on_entered_safe_zone"]
-[connection signal="body_exited" from="SpawnManager/Safezone3" to="Player" method="_on_exit_safe_zone"]
-[connection signal="timeout" from="TotalRunTimer" to="." method="_on_total_run_timer_timeout"]
+[connection signal="body_entered" from="endLocation" to="endLocation" method="_on_body_entered"]
 [connection signal="button_down" from="Hud/MarginContainer/HBoxContainer/PauseButton" to="Hud" method="_on_pause_button_button_down"]
 [connection signal="unpause" from="PauseLayer/PauseMenu" to="Hud" method="_on_pause_button_button_down"]
 [connection signal="pressed" from="PauseLayer/PauseMenu/MenuPanelContainer/MarginContainer/BoxContainer/MenuButtonsMargin/MenuButtons/CloseButton" to="PauseLayer/PauseMenu" method="_on_close_button_pressed"]

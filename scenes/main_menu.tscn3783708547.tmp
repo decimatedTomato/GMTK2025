@@ -1,12 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://c6k5nnpbypshi"]
+[gd_scene load_steps=6 format=3 uid="uid://1ig4gt7ee8a8"]
 
-[ext_resource type="Script" uid="uid://bhgs1upaahk3y" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/main_menu.gd" id="1"]
-[ext_resource type="PackedScene" uid="uid://hmx6o472ropw" path="res://addons/maaacks_game_template/base/scenes/menus/options_menu/master_options_menu_with_tabs.tscn" id="2_qvrrd"]
-[ext_resource type="PackedScene" uid="uid://osxulxw2oas3" path="res://addons/maaacks_game_template/base/scenes/credits/scrollable_credits.tscn" id="3_73am8"]
-[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="4_w8sbm"]
-[ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="6_bs342"]
-[ext_resource type="FontFile" uid="uid://c1ev0ojsp71lj" path="res://assets/fonts/PixelDigivolveItalic-dV8R.ttf" id="6_rqvfy"]
-[ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/config_name_label.gd" id="7_j7612"]
+[ext_resource type="Script" uid="uid://bvrnj583odn4l" path="res://scripts/UIScripts/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="4_5dd4i"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="5_lgwnu"]
+[ext_resource type="FontFile" uid="uid://c1ev0ojsp71lj" path="res://assets/fonts/PixelDigivolveItalic-dV8R.ttf" id="6_flqon"]
+[ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/config_name_label.gd" id="7_rcqid"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -15,14 +13,12 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1")
-options_packed_scene = ExtResource("2_qvrrd")
-credits_packed_scene = ExtResource("3_73am8")
+script = ExtResource("1_8ln24")
 
 [node name="UISoundController" type="Node" parent="."]
-script = ExtResource("6_bs342")
+script = ExtResource("4_5dd4i")
 
-[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("4_w8sbm")]
+[node name="BackgroundMusicPlayer" parent="." instance=ExtResource("5_lgwnu")]
 
 [node name="BackgroundTextureRect" type="TextureRect" parent="."]
 layout_mode = 1
@@ -59,14 +55,17 @@ mouse_filter = 2
 layout_mode = 1
 anchors_preset = 10
 anchor_right = 1.0
-offset_bottom = 86.0
+offset_bottom = 124.0
 grow_horizontal = 2
-theme_override_fonts/font = ExtResource("6_rqvfy")
-theme_override_font_sizes/font_size = 72
-text = "SAVE YOUR WIFE"
+theme_override_colors/font_color = Color(0.393333, 0.3, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.3135, 0.589317, 0.95, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_flqon")
+theme_override_font_sizes/font_size = 108
+text = "save your wife !"
 horizontal_alignment = 1
 vertical_alignment = 1
-script = ExtResource("7_j7612")
+script = ExtResource("7_rcqid")
 
 [node name="SubTitleMargin" type="MarginContainer" parent="MenuContainer"]
 layout_mode = 2
@@ -79,10 +78,12 @@ mouse_filter = 2
 [node name="SubTitleLabel" type="Label" parent="MenuContainer/SubTitleMargin/SubTitleContainer"]
 layout_mode = 1
 anchors_preset = -1
+anchor_top = 0.072
 anchor_right = 1.0
+anchor_bottom = 0.093
 offset_bottom = 34.0
 grow_horizontal = 2
-theme_override_font_sizes/font_size = 24
+theme_override_font_sizes/font_size = 32
 text = "surely this time machine thing will work out"
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -105,12 +106,12 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -101.0
-offset_top = -174.5
-offset_right = 101.0
-offset_bottom = 174.5
+offset_left = -172.0
+offset_top = -188.0
+offset_right = 7.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(2, 2)
 size_flags_horizontal = 4
 theme_override_constants/separation = 16
 alignment = 1

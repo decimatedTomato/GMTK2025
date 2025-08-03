@@ -1,4 +1,4 @@
-[gd_scene load_steps=35 format=3 uid="uid://cvkdj4nek1ceh"]
+[gd_scene load_steps=39 format=3 uid="uid://cvkdj4nek1ceh"]
 
 [ext_resource type="Script" uid="uid://cxgmt11kicapo" path="res://scripts/playerFullMovement.gd" id="1_ws0vm"]
 [ext_resource type="Texture2D" uid="uid://clgiknwatephu" path="res://assets/scientist_fall.png" id="2_70d11"]
@@ -71,6 +71,22 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_gv3ic"]
 atlas = ExtResource("5_khinc")
 region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_70d11"]
+atlas = ExtResource("6_bruh7")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cw2d6"]
+atlas = ExtResource("6_bruh7")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_khinc"]
+atlas = ExtResource("6_bruh7")
+region = Rect2(64, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bruh7"]
+atlas = ExtResource("6_bruh7")
+region = Rect2(96, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_b8lor"]
 atlas = ExtResource("6_bruh7")
@@ -148,6 +164,23 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
+"texture": SubResource("AtlasTexture_70d11")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_cw2d6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_khinc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bruh7")
+}],
+"loop": true,
+"name": &"Run",
+"speed": 15.0
+}, {
+"frames": [{
+"duration": 1.0,
 "texture": SubResource("AtlasTexture_b8lor")
 }, {
 "duration": 1.0,
@@ -160,8 +193,8 @@ animations = [{
 "texture": SubResource("AtlasTexture_viqgg")
 }],
 "loop": true,
-"name": &"Run",
-"speed": 12.0
+"name": &"Walk",
+"speed": 10.0
 }]
 
 [sub_resource type="Gradient" id="Gradient_v6fml"]
@@ -229,8 +262,8 @@ shape = SubResource("CapsuleShape2D_v6fml")
 texture_filter = 1
 scale = Vector2(0.5, 0.5)
 sprite_frames = SubResource("SpriteFrames_yi2kj")
-animation = &"Fall"
-frame_progress = 0.874974
+animation = &"Walk"
+frame_progress = 0.623
 
 [node name="JumpSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("3_3li8b")

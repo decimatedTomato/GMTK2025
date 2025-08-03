@@ -15,7 +15,7 @@ signal game_exited
 @export var signal_game_exit : bool = false
 
 var options_scene
-var credits_scene = $"res://scenes/creditsMenu.tscn"
+var credits_scene
 var sub_menu
 
 func load_game_scene() -> void:
@@ -76,28 +76,8 @@ func _hide_new_game_if_unset() -> void:
 	if game_scene_path.is_empty():
 		%NewGameButton.hide()
 
-func _add_or_hide_options() -> void:
-	if options_packed_scene == null:
-		%OptionsButton.hide()
-	else:
-		options_scene = options_packed_scene.instantiate()
-		options_scene.hide()
-		%OptionsContainer.call_deferred("add_child", options_scene)
-
-func _add_or_hide_credits() -> void:
-	if credits_packed_scene == null:
-		%CreditsButton.hide()
-	else:
-		credits_scene = credits_packed_scene.instantiate()
-		credits_scene.hide()
-		if credits_scene.has_signal("end_reached"):
-			credits_scene.connect("end_reached", _on_credits_end_reached)
-		%CreditsContainer.call_deferred("add_child", credits_scene)
-
 func _ready() -> void:
 	_hide_exit_for_web()
-	_add_or_hide_options()
-	_add_or_hide_credits()
 	_hide_new_game_if_unset()
 
 func _on_new_game_button_pressed() -> void:
@@ -118,3 +98,13 @@ func _on_credits_end_reached() -> void:
 
 func _on_back_button_pressed() -> void:
 	_close_sub_menu()
+
+
+func _on_button_for_credits_button_down() -> void:
+	$MarginContainer.show()
+	$MarginContainer2.hide()
+
+
+func _on_button_button_down() -> void:
+	$MarginContainer.hide()
+	$MarginContainer2.show()

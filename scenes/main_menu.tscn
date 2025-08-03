@@ -1,0 +1,221 @@
+[gd_scene load_steps=6 format=3 uid="uid://1ig4gt7ee8a8"]
+
+[ext_resource type="Script" uid="uid://bvrnj583odn4l" path="res://scripts/UIScripts/main_menu.gd" id="1_8ln24"]
+[ext_resource type="Script" uid="uid://b5oej1q4h7jvh" path="res://addons/maaacks_game_template/base/scripts/ui_sound_controller.gd" id="4_5dd4i"]
+[ext_resource type="PackedScene" uid="uid://bkcsjsk2ciff" path="res://addons/maaacks_game_template/base/scenes/music_players/background_music_player.tscn" id="5_lgwnu"]
+[ext_resource type="FontFile" uid="uid://c1ev0ojsp71lj" path="res://assets/fonts/PixelDigivolveItalic-dV8R.ttf" id="6_flqon"]
+[ext_resource type="Script" uid="uid://bkwlopi4qn32o" path="res://addons/maaacks_game_template/base/scenes/menus/main_menu/config_name_label.gd" id="7_rcqid"]
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8ln24")
+
+[node name="MarginContainer2" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="UISoundController" type="Node" parent="MarginContainer2"]
+script = ExtResource("4_5dd4i")
+root_path = NodePath("../..")
+
+[node name="BackgroundMusicPlayer" parent="MarginContainer2" instance=ExtResource("5_lgwnu")]
+
+[node name="BackgroundTextureRect" type="TextureRect" parent="MarginContainer2"]
+layout_mode = 2
+expand_mode = 1
+stretch_mode = 5
+
+[node name="MenuContainer" type="MarginContainer" parent="MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/margin_left = 100
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_right = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="TitleMargin" type="MarginContainer" parent="MarginContainer2/MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+
+[node name="TitleContainer" type="Control" parent="MarginContainer2/MenuContainer/TitleMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="TitleLabel" type="Label" parent="MarginContainer2/MenuContainer/TitleMargin/TitleContainer"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 124.0
+grow_horizontal = 2
+theme_override_colors/font_color = Color(0.393333, 0.3, 1, 1)
+theme_override_colors/font_shadow_color = Color(0.3135, 0.589317, 0.95, 1)
+theme_override_colors/font_outline_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("6_flqon")
+theme_override_font_sizes/font_size = 72
+text = "save your wife !"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("7_rcqid")
+
+[node name="SubTitleMargin" type="MarginContainer" parent="MarginContainer2/MenuContainer"]
+layout_mode = 2
+theme_override_constants/margin_top = 92
+
+[node name="SubTitleContainer" type="Control" parent="MarginContainer2/MenuContainer/SubTitleMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="SubTitleLabel" type="Label" parent="MarginContainer2/MenuContainer/SubTitleMargin/SubTitleContainer"]
+layout_mode = 1
+anchors_preset = -1
+anchor_top = 0.072
+anchor_right = 1.0
+anchor_bottom = 0.093
+offset_bottom = 34.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 24
+text = "surely this time machine thing will work out"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButtonsMargin" type="MarginContainer" parent="MarginContainer2/MenuContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 136
+theme_override_constants/margin_bottom = 8
+
+[node name="MenuButtonsContainer" type="Control" parent="MarginContainer2/MenuContainer/MenuButtonsMargin"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="MenuButtonsBoxContainer" type="BoxContainer" parent="MarginContainer2/MenuContainer/MenuButtonsMargin/MenuButtonsContainer"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -172.0
+offset_top = -188.0
+offset_right = 7.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(2, 2)
+size_flags_horizontal = 4
+theme_override_constants/separation = 16
+alignment = 1
+vertical = true
+
+[node name="NewGameButton" type="Button" parent="MarginContainer2/MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "New Game"
+
+[node name="ButtonForCredits" type="Button" parent="MarginContainer2/MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+layout_mode = 2
+text = "credits"
+
+[node name="ExitButton" type="Button" parent="MarginContainer2/MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Exit"
+
+[node name="OptionsContainer" type="MarginContainer" parent="MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="CreditsContainer" type="MarginContainer" parent="MarginContainer2"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 32
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 64
+
+[node name="FlowControlContainer" type="MarginContainer" parent="MarginContainer2"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 16
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 16
+theme_override_constants/margin_bottom = 16
+
+[node name="FlowControl" type="Control" parent="MarginContainer2/FlowControlContainer"]
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_group_ = true
+
+[node name="BackButton" type="Button" parent="MarginContainer2/FlowControlContainer/FlowControl"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -31.0
+offset_right = 45.0
+grow_vertical = 0
+text = "Back"
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 1
+theme_override_font_sizes/font_size = 24
+text = "Programmers
+(on Github)
+@niknik3610
+@Vincasturskis
+@decimatedtomato
+@mugattarova
+
+Artists
+@decimatedtomato
+
+Credits for music:
+Daylight by Sunnyscy from Free Music Archive, Liscense CC BY-NC-SA
+Dark Fear by Audiorezout
+Apple Psy by Grumplefunk
+JumpThud001 by TaraMG
+VOC_Male_Jump_03 by pekena_larva
+Soft wood kick by jorickhoofd"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Button" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "back"
+
+[connection signal="pressed" from="MarginContainer2/MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/NewGameButton" to="." method="_on_new_game_button_pressed"]
+[connection signal="button_down" from="MarginContainer2/MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ButtonForCredits" to="." method="_on_button_for_credits_button_down"]
+[connection signal="pressed" from="MarginContainer2/MenuContainer/MenuButtonsMargin/MenuButtonsContainer/MenuButtonsBoxContainer/ExitButton" to="." method="_on_exit_button_pressed"]
+[connection signal="pressed" from="MarginContainer2/FlowControlContainer/FlowControl/BackButton" to="." method="_on_back_button_pressed"]
+[connection signal="button_down" from="MarginContainer/VBoxContainer/Button" to="." method="_on_button_button_down"]
