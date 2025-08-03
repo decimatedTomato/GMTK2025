@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="gmtk2025"
-run/main_scene="uid://sgaqo3xd50ep"
+run/main_scene="uid://bv0j2fc5lrfkq"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -89,4 +89,4 @@ dash={
 textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
-environment/defaults/default_clear_color=Color(0.597005, 0.120607, 0.681231, 1)
+environment/defaults/default_clear_color=Color(0.635294, 0.862745, 0.780392, 1)

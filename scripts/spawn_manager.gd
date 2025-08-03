@@ -1,11 +1,13 @@
 extends Node2D
 
-var currentCheckpoint:int = 0;
+@export var INITIAL_CHECKPOINT: int
 @export var checkPoints: Array[CheckPoint];
+
+var currentCheckpoint:int;
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass
+	currentCheckpoint = INITIAL_CHECKPOINT;
 
 func on_checkpoint_changed(checkpoint: int):
 	if checkpoint == currentCheckpoint:
@@ -14,4 +16,5 @@ func on_checkpoint_changed(checkpoint: int):
 	currentCheckpoint = checkpoint;
 
 func _get_next_spawn_point():
+	print("current checkpoint:", currentCheckpoint)
 	return checkPoints[currentCheckpoint]._get_next_spawn_point()
